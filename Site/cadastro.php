@@ -56,13 +56,14 @@ if(isset($_POST['submit']))
         </button>
     </nav>
     <div class="box">
-        <form action="cadastro.php" method="POST">
+        <form action="cadastro.php" method="POST" onsubmit="return validar()">
             <fieldset>
                 <legend><b>Cadastro de locador</b></legend>
                 <br>
-                <div class="inputBox">
+                <div class="inputBox" id="inputError">
                     <input type="text" name="login" id="login" class="inputUser" required>
                     <label for="login" class="labelInput">Login</label>
+                    <p id="teste"></p>
                 </div>
                 <br><br>
                 <div class="inputBox">
@@ -115,5 +116,31 @@ if(isset($_POST['submit']))
             </fieldset>
         </form>
     </div>
+    <script>
+        function validar() {
+            var senha = document.getElementById("senha");
+            var regexSenha = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+            if (!regexSenha.test(senha.value)) {
+                alert("A senha deve ter no mínimo 8 caracteres, uma letra maiúscula e um número.");
+                senha.classList.add("inputError");
+                senha.focus();
+                return false;
+            } else {
+                senha.classList.remove("inputError");
+            }
+            var teste = document.getElementById("teste");
+            var login = document.getElementById("login");
+            var regexLogin = /^(?=.*[A-Z])(?=\S{4,})/;
+            if (!regexLogin.test(login.value)) {
+                teste.innerHTML("sdsddsdsds")
+                login.classList.add("inputError");
+                login.focus();
+                return false;
+            } else {
+                login.classList.remove("inputError");
+            }
+            return true;
+        }    
+</script>
 </body>
 </html>

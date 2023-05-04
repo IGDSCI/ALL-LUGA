@@ -26,8 +26,9 @@ include_once('conexao.php');
         }
     }
 
+    
 
-    header('Location: locatarioPerfil.php');
+    header('Location: locadorPerfil.php');
 
     return array(
 		'login' => $login);

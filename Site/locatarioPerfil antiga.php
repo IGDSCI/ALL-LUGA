@@ -3,7 +3,7 @@
 
 	include_once('conexao.php');
 
-    
+    print_r($_SESSION);
     if((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)){
         //se os registros forem diferentes ira redirecionar para pagina de login e nao ira iniciar a sessao.
         unset($_SESSION['login']);
@@ -11,7 +11,7 @@
         header('Location: login2.php');
     }
     $login = $_SESSION['login'];
-	
+	print_r($login . " -ola-  ");
 
     $sql = "SELECT tb_usuario.*, tb_sexo.Genero, tb_tipo_usuario.Tipo
 	FROM tb_usuario
@@ -31,48 +31,49 @@
 
 	$result2 = $conexao->query($sql2);
 
-	
+	print_r($result);
+	print_r($result2);
 
-	
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<title>Perfil Locatário</title>
+	<title>Sistema de Gerenciamento - Dashboard</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="styleGustavo.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<header>
-	<button class="sair"><a href="sair.php ">Sair</a></button>
-		<div class="logo">Perfil Locatário</div>
+		<div class="logo">Sistema de Gerenciamento</div>
 		<nav>
             <div>
                 <?php
                     echo "<h1>Bem vindo <u>$login</u></h1>";
                 ?>
             </div>
+            <div>
+                <button><a href="sair.php ">Sair</a></button>
+            </div>
 			<hr>
 		</nav>
 		<br>
 	</header>
 	<main>
-	<table class="table" id="tabela1">
-		<h1 class="logo">Seus dados</h1>
+	<table class="table">
 		<thead>
 			<tr>
-			<th class="tabela" scope="col">#</th>
-			<th class="tabela" scope="col">Login</th>
-			<th class="tabela" scope="col">Senha</th>
-			<th class="tabela" scope="col">Telefone</th>
-			<th class="tabela"scope="col">CPF</th>
-			<th class="tabela"scope="col">Sexo</th>
-			<th class="tabela" scope="col">Data de Nascimento</th>
-			<th class="tabela" scope="col">Cidade</th>
-			<th class="tabela" scope="col">Estado</th>
-			<th class="tabela" scope="col">Usuário</th>
-			<th class="tabela" scope="col">...</th>
+			<th scope="col">#</th>
+			<th scope="col">Login</th>
+			<th scope="col">Senha</th>
+			<th scope="col">Telefone</th>
+			<th scope="col">CPF</th>
+			<th scope="col">Sexo</th>
+			<th scope="col">Data de Nascimento</th>
+			<th scope="col">Cidade</th>
+			<th scope="col">Estado</th>
+			<th scope="col">Usuário</th>
+			<th scope="col">...</th>
 
 			</tr>
 		</thead>
@@ -95,7 +96,7 @@
 					echo "<td>".$linha['Estado']."</td>";
 					echo "<td>".$linha['Tipo']."</td>";
 					echo "<td>
-						<button class='editar'><a href='locatarioEdit.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a></button>
+						<button><a href='locatarioEdit.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a></button>
 					</td>";
 					echo "</tr>";
 					}
@@ -106,18 +107,17 @@
 			?>
 		</tbody>
 	</table>
-	<br><br>
-	<hr>
-	<table class="table" id="tabela2">
+	<table class="table">
 		<thead>
 			<tr>
-			<th class="tabela" scope="col">#</th>
-			<th class="tabela" scope="col">Nome</th>
-			<th class="tabela" scope="col">Descrição</th>
-			<th class="tabela" scope="col">Preço</th>
-			<th class="tabela" scope="col">Proprietário</th>
-			<th class="tabela" scope="col">Categoria</th>
-			<th class="tabela" scope="col">...</th>
+			<th scope="col">#</th>
+			<th scope="col">Nome</th>
+			<th scope="col">Descrição</th>
+			<th scope="col">Preço</th>
+			<th scope="col">Proprietário</th>
+			<th scope="col">Categoria</th>
+			<th scope="col">...</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -135,8 +135,7 @@
 					echo "<td>".$linha['Login']."</td>";
 					echo "<td>".$linha['TipoCategoria']."</td>";
 					echo "<td>
-						<button class='editar'><a href='locatarioEditPerfil.php?ID_Produto=$linha[ID_Produto]'>Editar</a></button>
-						<button class='excluir'><a href='deletaProduto.php?ID_Produto=$linha[ID_Produto]'>Excluir</a></button>
+						<button><a href='deletaProduto.php?ID_Produto=$linha[ID_Produto]'>Excluir</a></button>
 					</td>";
 					echo "</tr>";
 					}
@@ -148,7 +147,9 @@
 		</tbody>
 	</table>
 	<br><br>
+	<hr>
+	<br><br>
 	</main>
-	<button class="chamada-anuncio"><a href="anuncio.php">Anuncie um produto</a></button>
+	<button><a href="anuncio.php">Anuncie um produto</a></button>
 </body>
 </html>

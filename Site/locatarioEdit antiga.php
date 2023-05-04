@@ -20,7 +20,7 @@ if (!empty($_GET['ID_Usuario'])) {
             $cidade = $linha['Cidade'];
             $estado = $linha['Estado'];
         }
-        
+        print_r($login);
     }
 } else {
     header('Location: locatarioPerfil.php');
@@ -35,7 +35,6 @@ if (!empty($_GET['ID_Usuario'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="">
-    <link rel="stylesheet" href="css.css">
     <title>Formulário</title>
 </head>
 <body>
@@ -45,15 +44,13 @@ if (!empty($_GET['ID_Usuario'])) {
                 <legend><b>Cadastro de locador</b></legend>
                 <br>
                 <div class="inputBox">
-                    <br><br>
                     <input type="text" name="login" id="login" class="inputUser" value="<?php echo $login?>" readonly>
-                    <label for="login" class="labelInput">Login:</label>
+                    <label for="login" class="labelInput">Login</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
-                    <br><br>
-                    <input type="password" name="senha" id="senha" class="inputUser" value="<?php echo $senha?>"readonly>
-                    <label for="password" class="labelInput">Senha:</label>
+                    <input type="password" name="senha" id="senha" class="inputUser" value="<?php echo $senha?>" readonly>
+                    <label for="password" class="labelInput">Senha</label>
                 </div>
                 <br><br>
                 <div class="inputBox">
@@ -90,24 +87,9 @@ if (!empty($_GET['ID_Usuario'])) {
                 <br><br>
                 <br><br>
                 <input type="hidden" name="ID_Usuario" value="<?php echo $ID_Usuario?>">
-                <input type="submit" name="update" id="submit">
+                <input type="submit" name="update" id="update">
             </fieldset>
         </form>
     </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

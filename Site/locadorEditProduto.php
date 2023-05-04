@@ -1,55 +1,27 @@
 <?php
-session_start();
-include_once('conexao.php');
 
-print_r($_SESSION);
+if (!empty($_GET['ID_Produto'])) {
+    include_once('conexao.php');
 
-if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)) {
-  //se os registros forem diferentes ira redirecionar para pagina de login e nao ira iniciar a sessao.
-  unset($_SESSION['login']);
-  unset($_SESSION['senha']);
-  header('Location: login.php');
-}
+    $ID_Produto = $_GET['ID_Produto'];
 
-$login = $_SESSION['login'];
+    $sqlSelect = "SELECT * FROM tb_produto INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria WHERE ID_Produto=$ID_Produto";
 
-echo $login;
-
-if (isset($_FILES['foto'])) 
-{
-  $extensao = strtolower(substr($_FILES['foto']['name'], -4)); //pega o nome da extensao do arquivo exemplo .jpg
-  $novoNome = uniqid() . $extensao; //define o nome do arquivo
-  $diretorio = "arquivos/"; //define o diretorio para onde enviaremos o arquivo
-
-  move_uploaded_file($_FILES['foto']['tmp_name'], $diretorio.$novoNome); //faz o upload
-
-}
-
-//inserindo dados do produto no BD
-if (isset($_POST['submit'])) {
-
-  $nome = mysqli_real_escape_string($conexao, $_POST['nome']);
-  $descricao = mysqli_real_escape_string($conexao, $_POST['descricao']);
-  $preco = mysqli_real_escape_string($conexao, $_POST['preco']);
-  $novoNome = mysqli_real_escape_string($conexao, $diretorio.$novoNome);
-  $categoria = mysqli_real_escape_string($conexao, $_POST['categoria']);
-
-  // Recupera o ID do usuário a partir do login
-  $result2 = mysqli_query($conexao, "SELECT ID_Usuario FROM tb_usuario WHERE Login = '$login'");
-  $row = mysqli_fetch_assoc($result2);
-  $id_usuario = $row['ID_Usuario'];
-
-  // Insere os dados na tabela tb_produto
-  $result1 = mysqli_query($conexao, "INSERT INTO tb_produto (Nome, Descricao, Preco, Proprietario, Foto, ID_TipoCat)
-    VALUES ('$nome', '$descricao', '$preco', '$id_usuario', '$novoNome', '$categoria')");
-
-  if ($result1) {
-    $sucesso = "Produto cadastrado com sucesso!";
-  } else {
-    $sucesso = "Erro ao cadastrar produto!";
-  }
+    $result = $conexao->query($sqlSelect);
+    
+    if ($result->num_rows > 0) {
+        while ($linha = mysqli_fetch_assoc($result)) {
+            $nome = $linha['Nome'];
+            $descricao = $linha['Descricao'];
+            $preco = $linha['Preco'];
+            $categoria = $linha['TipoCategoria'];
+        }
+    }
+} else {
+    header('Location: locadorPerfil.php');
 }
 ?>
+
 
 <html lang="pt-br">
 
@@ -78,16 +50,16 @@ if (isset($_POST['submit'])) {
           <h2 class="fade-in-image">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</h2>
           <div class="form-container">
           <h2><?php if (isset($sucesso)) echo $sucesso ?></h2>
-            <form enctype="multipart/form-data" class="form" action="anuncioPublicado.php" method="POST">
-              <input type="text" class="input-text" id="nome" name="nome" placeholder="Nome do produto" required>
+            <form enctype="multipart/form-data" class="form" action="locadorSalvaEditProduto.php" method="POST">
+              <input type="text" class="input-text" id="nome" name="nome" placeholder="Nome do produto" value="<?php echo $nome?>" required>
 
-              <input type="text" class="input-text" id="descricao" name="descricao" placeholder="Descrição" required>
+              <input type="text" class="input-text" id="descricao" name="descricao" placeholder="Descrição" value="<?php echo $descricao?>" required>
 
-              <input type="number" step="any" class="input-text" id="preco" name="preco" placeholder="Preco" required>
+              <input type="number" step="any" class="input-text" id="preco" name="preco" placeholder="Preco" value="<?php echo $preco?>" required>
 
               <div class="input-text">
                 <h3 id="file-name">Foto do produto</h3>
-                <input type="file" class="input-photo input-text" id="foto" name="foto" placeholder="Foto do Produto" onchange='uploadFile(this)' required>
+                <input type="file" class="input-photo input-text" id="foto" name="foto" placeholder="Foto do Produto" onchange='uploadFile(this)' readonly>
                 <div class="photo-button">
                   <img src="Images/Grupo 9.png" alt="">
                 </div>
@@ -100,18 +72,20 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="custom-select">
                   <label for="">Categorias: </label>
-                  <select name="categoria" required>
+                  <select name="categoria"  required>
                     <option value="1">Eletrônicos</option>
                     <option value="2">Eletrodomésticos</option>
                     <option value="3">Utensílios</option>
                     <option value="4">Esportes</option>
                   </select>
                 </div>
-                <div class="submit-button" type="submit" name="submit" id="submit">
-                  <button type="submit" name="submit" id="submit">
-                    <img src="Images/Icon ionic-ios-send.png" alt="">
-                  </button>
-                </div>
+                
+                    <div class="submit-button" type="submit" name="submit" id="submit">
+                        <input type="hidden" name="ID_Produto" value="<?php echo $ID_Produto?>">
+                        <button type="submit" name="update" id="submit">
+                        <img src="Images/Icon ionic-ios-send.png" alt="">
+                        </button>
+                    </div>
               </div>
             </form>
           </div>

@@ -8,7 +8,7 @@
         //se os registros forem diferentes ira redirecionar para pagina de login e nao ira iniciar a sessao.
         unset($_SESSION['login']);
         unset($_SESSION['senha']);
-        header('Location: login2.php');
+        header('Location: login.php');
     }
     $login = $_SESSION['login'];
 	
@@ -31,14 +31,13 @@
 
 	$result2 = $conexao->query($sql2);
 
-	
 
 	
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<title>Perfil Locatário</title>
+	<title>Perfil Locador</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="styleGustavo.css">
@@ -46,7 +45,7 @@
 <body>
 	<header>
 	<button class="sair"><a href="sair.php ">Sair</a></button>
-		<div class="logo">Perfil Locatário</div>
+		<div class="logo">Perfil Locador</div>
 		<nav>
             <div>
                 <?php
@@ -95,7 +94,7 @@
 					echo "<td>".$linha['Estado']."</td>";
 					echo "<td>".$linha['Tipo']."</td>";
 					echo "<td>
-						<button class='editar'><a href='locatarioEdit.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a></button>
+						<button class='editar'><a href='locadorEdit.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a></button>
 					</td>";
 					echo "</tr>";
 					}
@@ -135,7 +134,7 @@
 					echo "<td>".$linha['Login']."</td>";
 					echo "<td>".$linha['TipoCategoria']."</td>";
 					echo "<td>
-						<button class='editar'><a href='locatarioEditPerfil.php?ID_Produto=$linha[ID_Produto]'>Editar</a></button>
+						<button class='editar'><a href='locadorEditProduto.php?ID_Produto=$linha[ID_Produto]'>Editar</a></button>
 						<button class='excluir'><a href='deletaProduto.php?ID_Produto=$linha[ID_Produto]'>Excluir</a></button>
 					</td>";
 					echo "</tr>";

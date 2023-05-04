@@ -16,7 +16,7 @@
             $resultDelete = $conexao->query($sqlDelete);
         }
     }
-    header('Location: sistema.php');
+    header('Location: locadorPerfil.php');
 
 
 ?>

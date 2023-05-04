@@ -23,7 +23,7 @@ if (!empty($_GET['ID_Usuario'])) {
         
     }
 } else {
-    header('Location: locatarioPerfil.php');
+    header('Location: locadorPerfil.php');
 
 }
 ?>

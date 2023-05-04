@@ -1,5 +1,6 @@
 <?php
     session_start();
+
 	include_once('conexao.php');
     print_r($_SESSION);
     if((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)){
@@ -9,6 +10,7 @@
         header('Location: login.php');
     }
     $login = $_SESSION['login'];
+	print_r($login);
 
 	//select para listar os registros
 	if(!empty($_GET['search']))
@@ -49,6 +51,9 @@
 	$result = $conexao->query($sql);
 
 	$result2 = $conexao->query($sql2);
+
+	print_r($result);
+	print_r($result2);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -56,42 +61,44 @@
 	<title>Sistema de Gerenciamento - Dashboard</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="styleGustavo.css">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<header>
-		<button class="sair"><a href="sair.php">Sair</a></button>
-		<div class="logo">Administrador</div>
+		<div class="logo">Sistema de Gerenciamento</div>
 		<nav>
             <div>
                 <?php
                     echo "<h1>Bem vindo <u>$login</u></h1>";
                 ?>
             </div>
+            <div>
+                <button><a href="sair.php ">Sair</a></button>
+            </div>
 			<hr>
 		</nav>
 		<br>
 		<div>
-			<h1 class="texto-usuario">Gerenciamento de usuários</h1>
-			<input class="entrada" type="search" placeholder="Procure aqui" id="pesquisar">
-			<button class="pesquisar" onclick="searchData()">Pesquisar</button>
+			<input type="search" placeholder="Procure aqui" id="pesquisar">
+			<button onclick="searchData()">Pesquisar</button>
 		</div>
 	</header>
 	<main>
-	<table class="table" id="tabela1">
+	<table class="table">
 		<thead>
 			<tr>
-			<th class="tabela" scope="col">#</th>
-			<th class="tabela" scope="col">Login</th>
-			<th class="tabela" scope="col">Senha</th>
-			<th class="tabela" scope="col">Telefone</th>
-			<th class="tabela" scope="col">CPF</th>
-			<th class="tabela" scope="col">Sexo</th>
-			<th class="tabela" scope="col">Data de Nascimento</th>
-			<th class="tabela" scope="col">Cidade</th>
-			<th class="tabela" scope="col">Estado</th>
-			<th class="tabela" scope="col">Usuário</th>
-			<th class="tabela" scope="col">Ações</th>
+			<th scope="col">#</th>
+			<th scope="col">Login</th>
+			<th scope="col">Senha</th>
+			<th scope="col">Telefone</th>
+			<th scope="col">CPF</th>
+			<th scope="col">Sexo</th>
+			<th scope="col">Data de Nascimento</th>
+			<th scope="col">Cidade</th>
+			<th scope="col">Estado</th>
+			<th scope="col">Usuário</th>
+			<th scope="col">...</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -113,8 +120,8 @@
 					echo "<td>".$linha['Estado']."</td>";
 					echo "<td>".$linha['Tipo']."</td>";
 					echo "<td>
-						<button class='Editar' ><a href='edita.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a></button>
-						<button class='Excluir'><a href='deleta.php?ID_Usuario=$linha[ID_Usuario]'>Excluir</a></button>
+						<button><a href='edita.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a></button>
+						<button><a href='deleta.php?ID_Usuario=$linha[ID_Usuario]'>Excluir</a></button>
 					</td>";
 					echo "</tr>";
 					}
@@ -129,20 +136,20 @@
 	<hr>
 	<br><br>
 	<div>
-		<h1 class="texto-produtos">Gerenciamento de produtos</h1>
-		<input class="entrada" type="search" placeholder="Procure aqui" id="pesquisar2">
-		<button class="pesquisar" onclick="searchData2()">Pesquisar</button>
+		<input type="search" placeholder="Procure aqui" id="pesquisar2">
+		<button onclick="searchData2()">Pesquisar</button>
 	</div>
-	<table class="table" id="tabela2">
+	<table class="table">
 		<thead>
 			<tr>
-			<th class="tabela" scope="col">#</th>
-			<th class="tabela" scope="col">Nome</th>
-			<th class="tabela" scope="col">Descrição</th>
-			<th class="tabela" scope="col">Preço</th>
-			<th class="tabela" scope="col">Proprietário</th>
-			<th class="tabela" scope="col">Categoria</th>
-			<th class="tabela" scope="col">Ações</th>
+			<th scope="col">#</th>
+			<th scope="col">Nome</th>
+			<th scope="col">Descrição</th>
+			<th scope="col">Preço</th>
+			<th scope="col">Proprietário</th>
+			<th scope="col">Categoria</th>
+			<th scope="col">...</th>
+
 			</tr>
 		</thead>
 		<tbody>
@@ -160,13 +167,13 @@
 					echo "<td>".$linha['Login']."</td>";
 					echo "<td>".$linha['TipoCategoria']."</td>";
 					echo "<td>
-						<button class='excluir'><a href='deletaProduto.php?ID_Produto=$linha[ID_Produto]'>Excluir</a></button>
+						<button><a href='deletaProduto.php?ID_Produto=$linha[ID_Produto]'>Excluir</a></button>
 					</td>";
 					echo "</tr>";
 					}
 				} else {
 					// Se a consulta não retornou resultados, exibe uma mensagem de erro
-					echo "<tr><td  colspan='7'>Nenhum registro encontrado.</td></tr>";
+					echo "Nenhum registro encontrado.";
 				}
 			?>
 		</tbody>
@@ -174,9 +181,8 @@
 	</main>
 	<br><br><br>
 	<hr>
-	<button class="chamada-anuncio"><a href="anuncio.php">Anuncie um produto</a></button>
+	<button><a href="anuncio.php">Anuncie um produto</a></button>
 </body>
-
 <script>
 	var search = document.getElementById('pesquisar');
 
