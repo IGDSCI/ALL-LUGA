@@ -1,3 +1,9 @@
+html {
+  --checked-color: #097FF5;
+
+  --bg-color: #e8e8e8;
+}
+
 body{
     width: 100%;
     height: 100%;
@@ -27,33 +33,26 @@ body{
     font-style: normal;
   }
 
+  #background-video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -3;
+  }
+
 .main-section{
     display: flex;
     position: relative;
     width: 100%;
     height: 100%;
-    background: url('../Images/Grupo\ 47@2x.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: bottom;
-}
-.left-container{
-    width: 25%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-    
-}
-.index{
-    position: absolute;
-    top: 25%;
-    z-index: 9999;
-    text-align: center;
-    left: 15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+ }
+
+
 
 .p-control p{
     font: normal normal normal 25px/72px "Gotham";
@@ -77,17 +76,24 @@ body{
 }
 
 .right-container{
-    width: 50%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: -5%;
+    position: absolute;
+    width: 30%;
+    height: 90%;
+    right: 35%;
+    top: 5%;
+    background: rgba(255, 255, 255, 0.10) 0% 0% no-repeat padding-box;
+    border: 1px solid #707070;
+    border-radius: 85px;
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    z-index: 999;
 }
 
 .right-control{
-    margin-top: 15%;
-    width: 60%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -98,12 +104,12 @@ body{
     letter-spacing: 0px;
     color: #ffffff;
     opacity: 1;
-    font: 2em "Rubik";
-    margin-top: -5%;
+    font: 1.5em "Rubik";
 }
 .form-control{
     display: flex;
     align-items: flex-end;
+    margin-left: 2%;
 }
 
 .side-bar{
@@ -114,35 +120,53 @@ body{
 }
 
 .input-text{
-    background: #F7F7F7 0% 0% no-repeat padding-box;
+    background: #F6F6F6 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    font: normal normal 200 20px/25px "Commuters Sans";
+    opacity: 1;
+    margin-bottom: 0%;
     text-align: left;
-    font: normal normal 200 1em 'Commuters Sans';
     letter-spacing: 0px;
     color: #585858;
     text-transform: capitalize;
     opacity: 1;
-    width: 100%;
-    height: 3.0em;
+    width: 90%;
+    height: 2.5em;
     outline: none;
-    margin-top: 2%;
+    margin-top: 0%;
     border: none;
     position: relative;
-    margin-top: 2.2%;
-    padding-left: 5%;
+    margin-top: 5%;
+    padding-left: 10%;
 }
 
 a{
     text-decoration: none;
+    width: 40%;
 }
 
 .register{
-    float: right;
-    margin-right: 10%;
+    display: flex;
+    width: 90%;
+    margin-left: -10%;
+    padding-right: 3em;
     text-align: left;
     font: normal normal normal 14px/9px "Commuters Sans";
     letter-spacing: 0.42px;
     color: #ffffff;
     opacity: 1;
+}
+
+.register2{
+  margin-left: -20%;
+}
+
+.register-container{
+  display: flex;
+  width: 100%;
+  flex-direction: row-reverse;
+  margin-left: -5%;
 }
 
 .register:hover{
@@ -152,26 +176,24 @@ a{
 }
 
 .input-submit{
-    height: 2.8em;
-    background: #097FF5 0% 0% no-repeat padding-box;
-    width: 80%;
-    margin-left: 5%;
-    text-align: center;
-    font: normal normal normal 1.2em "Rubik";
-
-    letter-spacing: 2.9px;
-    color: #FFFFFF;
-    text-transform: uppercase;
-    border: none;
-    margin-top: 3%;
-    padding: 0.4em 0.6em;
-    box-shadow: 0px 3px 6px #00000029;
-    border-radius: 1em;
-    opacity: 1;
-    position: relative;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
+  margin-top: 2%;
+  margin-left: 31%;
+  background: #F6F6F6 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 10px;
+  opacity: 1;
+  text-align: center;
+  font: normal normal normal 25px/31px 'Commuters Sans';
+  letter-spacing: 0px;
+  color: #0E4597;
+  text-transform: uppercase;
+  opacity: 1;
+  padding: 0.4em 0.6em;
+  text-transform: uppercase;
+  border: none;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
 
 }
 
@@ -246,3 +268,18 @@ a{
     100% { opacity: 1; }
   }
 
+.radio-control{
+  padding-left: 1em;
+  width: 86%;
+}
+
+
+input[type="radio"] {
+  height: 1.2rem;
+  width: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.accent {
+  accent-color: var(--checked-color);
+}

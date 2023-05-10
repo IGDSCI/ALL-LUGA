@@ -56,67 +56,65 @@ if(isset($_POST['submit']))
 
     <body>
         <div class="main-section">
-            <div class="left-container">
+                <video id="background-video" autoplay loop muted poster="Images/Grupo 61.jpg">
+                <source src="Images/pexels-pixabay-854336-1920x1080-24fps.mp4" type="video/mp4">
+                </video>
+                <div class="right-container">
                     
-            </div>
-
-            <div class="right-container">
-                <div class="right-control fade-in-image">
-                    <h2>FAÇA SEU CADASTRO</h2>
-                    <form method="post" action="testaLogin.php">
-                        <div class="form-control">
-                            <div class="side-bar"></div>
-                            <input type="text" class="input-text" id="input-login" name="login" placeholder="Login:" required>
-                        </div>
-                        <div class="form-control">  
-                            <div class="side-bar"></div>
-                            <input type="password" class="input-text" id="input-senha" name="senha" placeholder="Senha:" required>
-                        </div>
-                        <div class="form-control">
-                            <div class="side-bar"></div>
-                            <input type="text" class="input-text" id="input-login" name="cpf" placeholder="CPF:" required>
-                        </div>
-                        <div class="form-control">
-                            <div class="side-bar"></div>
-                            <input type="text" class="input-text" id="input-login" name="telefone" placeholder="Telefone:" required>
-                        </div>
-                        <div class="form-control">
-                            <div class="side-bar"></div>
-                            <div class="input-text">
-                                
-                                <input type="radio" id="masculino" name="genero" value="1"  required>
-                                <label for="feminino">Masculino</label>
-                                <input type="radio" id="feminino" name="genero" value="2"  required>
-                                <label for="masculino">Feminino</label>
-                                <input type="radio" id="naoInformar" name="genero" value="3" placeholder="nao" required>
-                                <label for="naoInformar" >Não informar</label>
+                        <div class="right-control fade-in-image">
+                            <h2>FAÇA SEU CADASTRO</h2>
+                            <form method="post" action="testaLogin.php">
+                                <div class="form-control">
+                                    <input type="text" class="input-text" id="input-login" name="login" placeholder="Login:" required>
+                                </div>
+                                <div class="form-control">  
+                                    <input type="password" class="input-text" id="input-senha" name="senha" placeholder="Senha:" required>
+                                </div>
+                                <div class="form-control">
+                                    <input type="text" class="input-text" id="input-login" name="cpf" placeholder="CPF:" required>
+                                </div>
+                                <div class="form-control">
+                                    <input type="text" class="input-text" id="input-login" name="telefone" placeholder="Telefone:" required>
+                                </div>
+                                <div class="form-control ">
+                                    <div class="input-text radio-control">
+                                        
+                                        <input type="radio" id="masculino" name="genero" value="1" class="accent" required>
+                                        <label for="feminino">Masculino</label>
+                                        <input type="radio" id="feminino" name="genero" value="2" class="accent" required>
+                                        <label for="masculino">Feminino</label>
+                                        <input type="radio" id="naoInformar" name="genero" value="3" placeholder="nao" class="accent" required>
+                                        <label for="naoInformar" >Não informar</label>
+                                    </div>
+                                </div>
+                                <div class="form-control">
+                                    <div class=""></div>
+                                    <input type="date" name="data_nascimento" id="data_nascimento" class="input-text" required>
+                                </div>
+                                <div class="form-control">
+                                    <div class=""></div>
+                                    <input type="text" class="input-text" id="input-login" name="cidade" placeholder="Cidade:" required>
+                                </div>
+                                <div class="form-control">
+                                    <div class=""></div>
+                                    <input type="text" class="input-text" id="input-login" name="estado" placeholder="Estado:" required>
+                                </div>
+                                <div class="form-control">
+                                    <div class=""></div>
+                                    <select name="escolha" class="input-text" required>
+                                        <option value="" >Escolha: Locador/Locatário</option>
+                                        <option value="2" >Locador</option>
+                                        <option value="1" >Locatário</option>
+                                    </select>
+                                </div>
+                            <div class="register-container">
+                            <a href="login2.php"><h3 class="register ">Entrar como Locatário</h3></a>
+                            <a class="register2"href="cadastro.php"><h3 class="register ">Entrar como Locador</h3></a>
                             </div>
-                        </div>
-                        <div class="form-control">
-                            <div class="side-bar"></div>
-                            <input type="date" name="data_nascimento" id="data_nascimento" class="input-text" required>
-                        </div>
-                        <div class="form-control">
-                            <div class="side-bar"></div>
-                            <input type="text" class="input-text" id="input-login" name="cidade" placeholder="Cidade:" required>
-                        </div>
-                        <div class="form-control">
-                            <div class="side-bar"></div>
-                            <input type="text" class="input-text" id="input-login" name="estado" placeholder="Estado:" required>
-                        </div>
-                        <div class="form-control">
-                            <div class="side-bar"></div>
-                            <select name="escolha" class="input-text" required>
-                                <option value="" >Escolha: Locador/Locatário</option>
-                                <option value="2" >Locador</option>
-                                <option value="1" >Locatário</option>
-                            </select>
-                        </div>
-                    <a href="login2.php"><h3 class="register">Entrar como Locatário</h3></a>
-                    <a href="cadastro.php"><h3 class="register">Entrar como Locador</h3></a>
-                    <input class="input-submit" type="submit" name="submit" id="submit" value="ENTRAR">
-                    </form>
+                            <input class="input-submit" type="submit" name="submit" id="submit" value="ENVIAR">
+                            
+                            </form>
+                    </div>
                 </div>
-            </div>
         </div>
     </body>
