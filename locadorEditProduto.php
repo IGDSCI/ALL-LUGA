@@ -198,7 +198,7 @@ if (!empty($_GET['ID_Produto'])) {
         x[i].classList.add("select-hide");
       }
     }
-  }
+  } 
   /*if the user clicks anywhere outside the select box,
   then close all select boxes:*/
   document.addEventListener("click", closeAllSelect);
