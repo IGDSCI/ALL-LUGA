@@ -3,79 +3,52 @@
 
 	include_once('conexao.php');
     
-    if((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)){
-        //se os registros forem diferentes ira redirecionar para pagina de login e nao ira iniciar a sessao.
-        unset($_SESSION['login']);
-        unset($_SESSION['senha']);
-        header('Location: login.php');
-    }
-    $login = $_SESSION['login'];
+    
 
-$darkMode = isset($_SESSION['darkMode']) ? $_SESSION['darkMode'] : false;
+	if(!empty($_GET['search']))
+	{
+		$data = $_GET['search'];
 
-if (!empty($_GET['search'])) {
-    $data = $_GET['search'];
+		$sql2 = "SELECT * FROM tb_produto
+		INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
+		WHERE Nome LIKE '%$data%' OR Descricao LIKE '%$data%'OR TipoCategoria LIKE '%$data%'";
+	}
+	else
+	{
+		$sql2 = "SELECT DISTINCT tb_produto.*, tb_categoria.TipoCategoria, tb_usuario.Login AS Login
+		FROM tb_produto
+		LEFT JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
+		LEFT JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
+		LEFT JOIN tb_aluguel ON tb_aluguel.ID_Produto = tb_produto.ID_Produto
+		WHERE tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL
+		ORDER BY tb_produto.ID_Produto DESC;";
+	}
 
-    $sql2 = "SELECT tb_produto.*, tb_categoria.TipoCategoria, tb_usuario.Login AS Login
-        FROM tb_produto
-        INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
-        INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
-        WHERE tb_produto.Nome LIKE '%$data%' OR tb_produto.Descricao LIKE '%$data%' OR tb_categoria.TipoCategoria LIKE '%$data%'";
-} else {
-    $sql2 = "SELECT tb_produto.*, tb_categoria.TipoCategoria, tb_usuario.Login AS Login
-        FROM tb_produto
-        INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
-        INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
-		ORDER BY tb_produto.ID_Produto DESC";
-}
-
-$result2 = $conexao->query($sql2);
-
+	$result2 = $conexao->query($sql2);
+	
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <title>Página Inicial - All Luga</title>
     <link rel="stylesheet" type="text/css" href="Css/style.css">
     <link href="https://googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
-
-<body class="<?php echo $darkMode ? 'dark-mode' : 'light-mode'; ?>">
-    <header class="cabecalho">
-        <a href="principal.php"> <img id="logo" src="Images/LOGOALLLUGA.png"></a>
-        <div class="pesquisa__itens">
-            <input type="search" placeholder="Pesquisar..." id="pesquisar">
-            <button id="botao__busca" onclick="searchData()"><img id="lupa" src="Images/lupa.png"></button>
+<body>
+    <header>
+        <a id="logo" href="principal.php"> <img  src="Images/LOGOALLLUGA%20.png"></a>
+        <div class="search-container">
+                <input type="search" placeholder="Pesquisar..." id="pesquisar">
+                <button onclick="searchData()">Buscar</button>
         </div>
-        <div class="botoes__container">
-            <a href="locadorPerfil.php" class="botoes">Visitar perfil</a>
-            <a href="login2.php" class="botoes">Entrar como locatário</a>
+        <div class="signup-container">
+            <a href="cadastro.php" class="signup-btn">Cadastro</a>
+            <a href="login.php" class="signup-btn">Entrar como locador</a>
+            <a href="login2.php" class="signup-btn">Entrar como locatário</a>
         </div>
     </header>
-    <ul class="categorias">
-        <li>
-            <a class="nome-categoria" href="#"><img class="icone" src="Images/icone.png">Comida</a>
-        </li>
-        <li>
-            <a class="nome-categoria" href="#"><img class="icone" src="Images/icone2.png">Roupa</a>
-        </li>
-        <li>
-
-            <a class="nome-categoria" href="#"><img class="icone" src="Images/icone3.png">Esporte</a>
-        </li>
-    </ul>
-
-    <div class="botoes-simples">
-        <a href="outra_pagina1.php" class="botao">Página 1</a>
-        <a href="outra_pagina2.php" class="botao">Página 2</a>
-        <a href="outra_pagina3.php" class="botao">Página 3</a>
-    </div>
-    <footer>
-        <button class="dark-mode" onclick="toggleDarkMode()">Dark Mode</button>
-    </footer>
     <ul class="categorias">
         
     </ul>
@@ -91,9 +64,11 @@ $result2 = $conexao->query($sql2);
 					echo "<div class='item' id='card-content' style='width: 19%; display: inline-block; margin-right: 1%; margin-bottom: 20px;'>";
 					echo "<td><img class='imagemproduto'  width=50px src=".$linha['Foto']."></td>";
 					echo "<td> <h1 class='nome-produto'> Nome: ".$linha['Nome']."</h1></td>";
+					echo "<td> <h1 class='descricao-produto'> Descrição:".$linha['Descricao']."</h1></td>";
 					echo "<td> <h1 class='preco-produto'> Preço: ".$linha['Preco']."</h1></td>";
-					echo "<td> <h1 class='descricao-produto'>Proprietário: ".$linha['Login']."</h1></td>";
-					echo "<button class='botao-comprar'><a href='telaAluguel.php?id=".$linha['ID_Produto']."&imagem=".$linha['Foto']."'>Alugar</a></button>";
+					echo "<td> <h1 class='descricao-produto'> Categoria: ".$linha['TipoCategoria']."</h1></td>";
+					echo "<td> <h1 class='descricao-produto'> proprietario:" .$linha['Login']. "</h1>";
+					echo "<a href='telaAluguel.php?id=" . $linha['ID_Produto'] . "&imagem=" . $linha['Foto'] . "'><button class='botao-comprar'>Alugar</button></a>";
 					echo "</div>";
 				}
 				echo '</div>';
@@ -102,36 +77,26 @@ $result2 = $conexao->query($sql2);
 			}
 		?>
 
-
-
+        
 
 </body>
 
 <script>
-    var search = document.getElementById('pesquisar');
+	var search = document.getElementById('pesquisar');
 
-    search.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
+	search.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") 
+        {
             searchData();
         }
     });
 
 
-    function searchData() {
-        window.location = 'principal.php?search=' + search.value;
-    }
+	function searchData()
+	{
+		window.location = 'principal.php?search='+search.value;
+	}
 
-    function toggleDarkMode() {
-        var body = document.body;
-        body.classList.toggle("dark-mode");
-
-        // Salva o estado do modo escuro na sessão PHP
-        var isDarkMode = body.classList.contains("dark-mode");
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "toggle_dark_mode.php");
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("darkMode=" + (isDarkMode ? "1" : "0"));
-    }
 </script>
 
 </html>

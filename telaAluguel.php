@@ -3,79 +3,51 @@ session_start();
 
 include_once('conexao.php');
 
-// Verifica se o ID do produto e o caminho da imagem foram passados na URL
-if (isset($_GET['id']) && isset($_GET['imagem'])) {
-    $produtoId = $_GET['id'];
-    $imagem = $_GET['imagem'];
+// Verifica se o ID do produto foi fornecido na URL
+if (isset($_GET['id'])) {
+    $produtoID = $_GET['id'];
 
-    // Consulta o banco de dados para obter as informações do produto pelo ID
+    // Consulta o produto com base no ID fornecido
     $sql = "SELECT tb_produto.*, tb_categoria.TipoCategoria, tb_usuario.Login AS Login
-        FROM tb_produto
-        INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
-        INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
-		ORDER BY tb_produto.ID_Produto DESC";
-
+            FROM tb_produto
+            INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
+            INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
+            WHERE tb_produto.ID_Produto = $produtoID";
     $result = $conexao->query($sql);
 
     if ($result && $result->num_rows > 0) {
-        // Exibe as informações do produto
+        // O produto foi encontrado, exiba os detalhes
         $produto = $result->fetch_assoc();
-        echo "<div class='detalhes-produto'>";
-        echo "<h1>Detalhes do Produto:</h1>";
-        echo "<img src='" . $imagem . "' alt='Imagem do Produto'>";
+
+        // Aqui você pode criar o layout HTML para exibir os detalhes do produto
+        // Use as informações do array $produto para preencher os campos
+
+        // Exemplo:
+        
+        echo "<form action='adicionaAluguelBD.php' method='POST'>";
+        echo "<img src='" . $_GET['imagem'] . "' alt='Imagem do Produto'>";
+        echo "<h1>Detalhes do produto:</h1>";
         echo "<p>Nome: " . $produto['Nome'] . "</p>";
         echo "<p>Descrição: " . $produto['Descricao'] . "</p>";
         echo "<p>Preço: " . $produto['Preco'] . "</p>";
         echo "<p>Categoria: " . $produto['TipoCategoria'] . "</p>";
         echo "<p>Proprietário: ".$produto['Login']."</p>";
-        echo "<button id='btn-oferecer-proposta'>Oferecer proposta</button>";
-        echo "</div>";
-        // Aqui você pode adicionar mais informações do produto conforme necessário
+        echo "<label for='campo2'>Dias:</label>";
+        echo "<input type='number' id='dias' name='dias'>";
+        echo "<input type='hidden' name='produtoID' value='" . $_GET['id'] . "'>"; // Inclua o ID do produto como um campo oculto
+        echo "<input type='hidden' name='nomeLocador' value='" .$produto['Login']. "'>"; 
+        echo "<input type='hidden' name='valor' value='" .$produto['Preco']. "'>";
+        echo "<input type='hidden' name='nomeLocatario' value='"  .$_SESSION['login'] . "'>";  
+        echo "<input type='submit' value='Enviar'>";
+        echo "</form>";
+
     } else {
+        // O produto não foi encontrado, exiba uma mensagem de erro
         echo "Produto não encontrado.";
     }
 } else {
-    echo "ID do produto ou caminho da imagem não especificados.";
+    // ID do produto não foi fornecido, redirecione o usuário de volta para a página principal ou exiba uma mensagem de erro.
+    header("Location: principal.php"); // Redireciona para a página principal
+    exit(); // Encerra o script para evitar a execução de código adicional
 }
-
-echo "<script>
-        document.getElementById('btn-oferecer-proposta').addEventListener('click', function() {
-            // Cria os elementos HTML para os inputs
-            var inputNome = document.createElement('input');
-            inputNome.setAttribute('type', 'text');
-            inputNome.setAttribute('placeholder', 'Seu nome');
-
-            var inputProposta = document.createElement('input');
-            inputProposta.setAttribute('type', 'text');
-            inputProposta.setAttribute('placeholder', 'Sua proposta');
-
-            // Cria um botão para enviar a proposta
-            var btnEnviar = document.createElement('button');
-            btnEnviar.innerText = 'Enviar';
-            btnEnviar.addEventListener('click', function() {
-                // Aqui você pode adicionar a lógica para enviar a proposta ao servidor
-
-                // Por exemplo, você pode recuperar os valores dos inputs
-                var nome = inputNome.value;
-                var proposta = inputProposta.value;
-
-                // E fazer algo com esses valores, como exibir um alerta
-                alert('Nome: ' + nome + '\\nProposta: ' + proposta);
-
-                // Você pode redirecionar o usuário para outra página após o envio da proposta, se necessário
-                // window.location.href = 'outra_pagina.php';
-            });
-
-            // Cria uma div para conter os inputs e o botão
-            var divProposta = document.createElement('div');
-            divProposta.appendChild(inputNome);
-            divProposta.appendChild(inputProposta);
-            divProposta.appendChild(btnEnviar);
-
-            // Insere a div na página, abaixo das informações do produto
-            var detalhesProduto = document.querySelector('.detalhes-produto');
-            detalhesProduto.appendChild(divProposta);
-        });
-    </script>";
 ?>
-

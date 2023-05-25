@@ -49,69 +49,69 @@ $result2 = $conexao->query($sql2);
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik&display=swap" rel="stylesheet">
 	<style>
 		.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 20px;
+		}
 
-.table th,
-.table td {
-  padding: 12px;
-  text-align: center;
-  border: 1px solid #e0e0e0;
-}
+		.table th,
+		.table td {
+			padding: 12px;
+			text-align: center;
+			border: 1px solid #e0e0e0;
+		}
 
-.table th {
-  background-color: #0E4597;
-  color: white;
-  font-weight: bold;
-}
+		.table th {
+			background-color: #0E4597;
+			color: white;
+			font-weight: bold;
+		}
 
-.table td {
-  background-color: #f9f9f9;
-  color: #333;
-}
+		.table td {
+			background-color: #f9f9f9;
+			color: #333;
+		}
 
-.table .editar,
-.table .excluir,
-.table .chamada-anuncio {
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-  overflow: hidden;
-  transition: background-color 0.3s;
-}
+		.table .editar,
+		.table .excluir,
+		.table .chamada-anuncio {
+			padding: 8px 16px;
+			font-size: 14px;
+			font-weight: 600;
+			border-radius: 5px;
+			cursor: pointer;
+			text-align: center;
+			overflow: hidden;
+			transition: background-color 0.3s;
+		}
 
-.table .editar a,
-.table .excluir a,
-.table .chamada-anuncio a {
-  color: white;
-  text-decoration: none;
-}
+		.table .editar a,
+		.table .excluir a,
+		.table .chamada-anuncio a {
+			color: white;
+			text-decoration: none;
+		}
 
-.table .editar {
-  background-color: #0E4597;
-}
+		.table .editar {
+			background-color: #0E4597;
+		}
 
-.table .excluir {
-  background-color: #d32f2f;
-}
+		.table .excluir {
+			background-color: #d32f2f;
+		}
 
-.table .chamada-anuncio {
-  background-color: #4caf50;
-}
+		.table .chamada-anuncio {
+			background-color: #4caf50;
+		}
 
-.table .foto {
-  width: 100px;
-}
+		.table .foto {
+			width: 100px;
+		}
 
-.table .foto img {
-  max-width: 100%;
-  height: auto;
-}
+		.table .foto img {
+			max-width: 100%;
+			height: auto;
+		}
 	</style>
 </head>
 
@@ -187,7 +187,7 @@ $result2 = $conexao->query($sql2);
 								echo "<td>" . $linha['ID_Produto'] . "</td>";
 								echo "<td>" . $linha['Nome'] . "</td>";
 								echo "<td>" . $linha['Descricao'] . "</td>";
-								echo "<td>" . $linha['Preco'] . "</td>";
+								echo "<td> R$" . $linha['Preco'] . "</td>";
 								echo "<td>" . $linha['Login'] . "</td>";
 								echo "<td>" . $linha['TipoCategoria'] . "</td>";
 								echo "<td>
@@ -203,7 +203,50 @@ $result2 = $conexao->query($sql2);
 						}
 						?>
 					</tbody>
+
+					<thead>
+						<tr>
+							<th class="tabela" scope="col">Valor</th>
+							<th class="tabela" scope="col">Dias</th>
+							<th class="tabela" scope="col">Produto ID</th>
+							<th class="tabela" scope="col">Aceitar proposta</th>
+							<th class="tabela" scope="col">Recusar proposta</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+						// Consulta SQL para recuperar os dados da tb_aluguel
+						$sql3 = "SELECT * FROM tb_aluguel
+							INNER JOIN tb_usuario ON tb_aluguel.Nome_Locador = tb_usuario.Login
+							WHERE tb_aluguel.Nome_Locador = '$login' AND tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL";
+						$resultado3 = $conexao->query($sql3);
+
+						// Verifica se a consulta retornou resultados
+						if ($resultado3 && $resultado3->num_rows > 0) {
+							// Loop sobre cada linha de resultados
+							while ($linha = $resultado3->fetch_assoc()) {
+								// Exibe os dados na tabela HTML
+								echo "<tr>";
+								echo "<td> R$" . $linha['Valor'] . "</td>";
+								echo "<td>" . $linha['Dias'] . "</td>";
+								echo "<td>" . $linha['ID_Produto'] . "</td>";
+								echo "<td>
+										<button class='editar'><a href='aceitarProposta.php?id=" . $linha['ID_Aluguel'] . "'>Aceitar</a></button>
+									</td>";
+								echo "<td>
+										<button class='excluir'>Recusar</button>
+									</td>";
+								echo "</tr>";
+							}
+						} else {
+							// Se a consulta não retornou resultados, exibe uma mensagem de erro
+							echo "<tr><td colspan='5'>Nenhum registro encontrado.</td></tr>";
+						}
+						?>
+					</tbody>
 				</table>
+
+
 			</div>
 
 

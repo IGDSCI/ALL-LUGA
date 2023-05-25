@@ -18,7 +18,7 @@ if (!empty($_GET['ID_Usuario'])) {
             $sexo = $linha['ID_TipoSexo'];
             $dataNasc = $linha['DataNasc'];
             $cidade = $linha['Cidade'];
-            $estado = $linha['Estado'];
+            $estado = $linha['Estado']; 
         }
     }
 } else {

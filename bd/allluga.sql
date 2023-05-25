@@ -1,3 +1,5 @@
+CREATE database allluga;
+use allluga;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -26,14 +28,14 @@ CREATE TABLE `tb_usuario` (
     `ID_Usuario` int PRIMARY KEY AUTO_INCREMENT,
     `Login` varchar(55),
     `Senha` varchar(40),
-    `Telefone` varchar(13),
+    `Telefone` varchar(20),
     `cpf` varchar(14),
     `DataNasc` date,
     `ID_TipoUsu` int,
     `ID_TipoSexo` int,
-    `cep` varchar(9), 
     `Cidade` varchar(100),
-    `Estado` varchar(100)
+    `Estado` varchar(100),
+    `cep` varchar(9)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `tb_usuario` (`Login`, `Senha`, `cpf`, `ID_TipoUsu`) VALUES
@@ -53,12 +55,22 @@ INSERT INTO `tb_categoria` (`ID_Categoria`, `TipoCategoria`) VALUES
 CREATE TABLE `tb_produto` (
     `ID_Produto` int PRIMARY KEY AUTO_INCREMENT,
     `Nome` varchar(25),  
-    `Descricao` varchar(300),
+    `Descricao` varchar(155),
     `Preco` double,
     `Foto` varchar(40),
     `Proprietario` int NOT NULL,
     `ID_TipoCat` int NOT NULL
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `tb_aluguel` (
+	`ID_Aluguel` int PRIMARY KEY AUTO_INCREMENT,
+	`Valor` int,
+    `Dias` int,
+    `ID_Produto` int,
+    `Permissao` boolean,
+    `Nome_Locador` varchar(55),
+    `Nome_Locatario` varchar(55)
+);
 
 /*CREATE TABLE `tb_aluguel` (
     `ID_Aluguel` int not null primary key auto_increment,
@@ -90,5 +102,3 @@ ALTER TABLE `tb_produto`
     REFERENCES `tb_usuario` (`ID_Usuario`),
     ADD CONSTRAINT `FK_Alugado` FOREIGN KEY (`ProdutoAlugado`)
     REFERENCES `tb_produto` (`ID_Produto`);*/
-    
-/*delete FROM tb_usuario WHERE ID_Usuario= 19;*/
