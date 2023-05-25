@@ -2,7 +2,7 @@
 session_start();
 include_once('conexao.php');
 
-print_r($_SESSION);
+
 
 if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)) {
   //se os registros forem diferentes ira redirecionar para pagina de login e nao ira iniciar a sessao.
@@ -13,7 +13,7 @@ if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true
 
 $login = $_SESSION['login'];
 
-echo $login;
+
 
 if (isset($_FILES['foto'])) 
 {
@@ -21,8 +21,8 @@ if (isset($_FILES['foto']))
   $novoNome = uniqid() . $extensao; //define o nome do arquivo
   $diretorio = "arquivos/"; //define o diretorio para onde enviaremos o arquivo
 
-  move_uploaded_file($_FILES['foto']['tmp_name'], $diretorio.$novoNome); //faz o upload
 
+  move_uploaded_file($_FILES['foto']['tmp_name'], $diretorio.$novoNome); //faz o upload
 }
 
 //inserindo dados do produto no BD
@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-  <button button><a href="login2.php">Voltar</a></button>
+  <button class="back" button><a href="locadorPerfil.php">Voltar</a></button>
   <section class="main-container">
     <section class="left-container">
       <section class="content-container">
@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
                   <img src="Images/Grupo 13.png" alt="">
                 </div>
                 <div class="custom-select">
-                  <label for="">Categorias: </label>
+                  
                   <select name="categoria" required>
                     <option value="1">Eletrônicos</option>
                     <option value="2">Eletrodomésticos</option>
@@ -107,6 +107,7 @@ if (isset($_POST['submit'])) {
                     <option value="4">Esportes</option>
                   </select>
                 </div>
+                <br><br>
                 <div class="submit-button" type="submit" name="submit" id="submit">
                   <button type="submit" name="submit" id="submit">
                     <img src="Images/Icon ionic-ios-send.png" alt="">
@@ -114,7 +115,7 @@ if (isset($_POST['submit'])) {
                   
                 </div>
               </div>
-              <button><a href="anuncioPublicado.php">Visitar Anuncios</a></button>
+              
             </form>
           </div>
 

@@ -22,6 +22,7 @@
             }
         }
         else{
+            $_SESSION['error'] = 'Usuário ou senha incorretos.';
             header('Location: login.php');
         }
     }

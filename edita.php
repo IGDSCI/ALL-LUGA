@@ -20,74 +20,284 @@ if (!empty($_GET['ID_Usuario'])) {
             $cidade = $linha['Cidade'];
             $estado = $linha['Estado'];
         }
-        print_r($login);
     }
 } else {
-    header('Location: sistema.php');
+    header('Location: sistema.php'); 
+
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css.css">
-    <title>Formulário</title>
-</head>
-<body>
-    <div class="box">
-        <form action="salvaEdit.php" method="POST">
-            <fieldset>
-                <legend><b>Cadastro de locador</b></legend>
-                <br>
-                <div class="inputBox">
-                    <input type="text" name="login" id="login" class="inputUser" value="<?php echo $login?>"required>
-                    <label for="login" class="labelInput">Login</label>
+<html lang="pt-br">
+    <head>
+        <title> All Luga </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">  
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="Css/Cadastro.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <style>
+            .custom-toastfy{
+                font-family: 'Gotham';
+                src: url('../js/Gotham-Book.eot');
+                src: url('../js/Gotham-Book.eot?#iefix') format('embedded-opentype'),
+                    url('../js/Gotham-Book.woff2') format('woff2'),
+                    url('../js/Gotham-Book.woff') format('woff'),
+                    url('../js/Gotham-Book.ttf') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+                font-display: swap;
+            }
+
+            .span-required{
+                display: none;
+                color: red;
+            }
+        </style>
+
+    </head>
+
+    <html lang="pt-br">
+    <head>
+        <title> All Luga </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">  
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="Css/Cadastro.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <div class="main-section">
+            <video id="background-video" autoplay loop muted poster="Images/Grupo 61.jpg">
+            <source src="Images/pexels-pixabay-854336-1920x1080-24fps.mp4" type="video/mp4">
+            </video>
+            <div class="left-container">
+                    
+            </div>
+
+            <div class="right-container">
+                <div class="right-control fade-in-image">
+                    <h2>EDITE SEU PERFIL</h2>
+                    <form method="post" action="salvaEdit.php" id="form"> 
+                        <div class="form-control">
+                            
+                            <input type="text" class="input-text" id="input-login" name="login" value="<?php echo $login?>" placeholder="Login:" style="opacity: .4;"  readonly>
+                        </div>
+                        <div class="form-control">  
+                            
+                            <input type="password" class="input-text" id="input-senha" value="<?php echo $senha?>" name="senha" placeholder="Senha:" style="opacity: .4;" readonly>
+                        </div>
+                        <div class="form-control">
+                            
+                            <input type="text" class="input-text required" id="input-login" value="<?php echo $cpf?>" name="cpf" placeholder="CPF:" oninput="cpfValidate()" required>
+                        </div>
+                        <span class = 'span-required'>Formato esperado: XXXXXXXXXXX</span>
+                        <div class="form-control">
+                            
+                            <input type="text" class="input-text required" id="input-login" name="telefone" value="<?php echo $telefone?>" placeholder="Telefone:" oninput="telefoneValidate()" required>
+                        </div>
+                        <span class = 'span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
+                        <div class="form-control">
+                            
+                            <div class="input-text radio-control">
+                                
+                                <input type="radio" id="masculino" name="genero" value="1" <?php echo ($sexo == 1) ? 'checked' : '' ?> required>
+                                <label for="feminino">Masculino</label>
+                                <input type="radio" id="feminino" name="genero" value="2" <?php echo ($sexo == 2) ? 'checked' : '' ?> required>
+                                <label for="masculino">Feminino</label>
+                                <input type="radio" id="naoInformar" name="genero" value="3" <?php echo ($sexo == 3) ? 'checked' : '' ?> required>
+                                <label for="naoInformar" >Não informar</label>
+                            </div>
+                        </div>
+                        <div class="form-control">
+                            
+                            <input type="date" name="data_nascimento" id="data_nascimento" class="input-text" value="<?php echo $dataNasc?>" required>
+                        </div>
+                        <span id="erro-data"></span>
+                        <div class="form-control">
+                            
+                            <input type="text" class="input-text required" id="input-login" name="cidade" placeholder="Cidade:" value="<?php echo $cidade?>" oninput="cidadeValidate()" required>
+                        </div>
+                        <span class = 'span-required'>A cidade dever ser escrita somente com letras</span>
+                        <div class="form-control">
+                            
+                            <input type="text" class="input-text required" id="input-login" name="estado" placeholder="Estado:" value="<?php echo $estado?>" oninput="estadoValidate()" required>
+                        </div>
+                        <span class = 'span-required'>O estado dever ser escrito somente com letras</span>
+                        <div class="form-control">
+                        </div>
+                    <input type="hidden" name="ID_Usuario" value="<?php echo $ID_Usuario?>">
+                    <input class="input-submit" type="submit" name="update" id="submit" value="EDITAR">
+                    </form>
                 </div>
-                <br><br>
-                <div class="inputBox">
-                    <input type="password" name="senha" id="senha" class="inputUser" value="<?php echo $senha?>"required>
-                    <label for="password" class="labelInput">Senha</label>
-                </div>
-                <br><br>
-                <div class="inputBox">
-                    <input type="tel" name="telefone" id="telefone" class="inputUser" value="<?php echo $telefone?>"required>
-                    <label for="telefone" class="labelInput">Telefone</label>
-                </div>
-                <div class="inputBox">
-                    <input type="text" name="cpf" id="cpf" class="inputUser" value="<?php echo $cpf?>"required>
-                    <label for="cpf" class="labelInput">CPF</label>
-                </div>
-                <p>Sexo:</p>
-                <input type="radio" id="masculino" name="genero" value="1" <?php echo ($sexo == 1) ? 'checked' : '' ?> required>
-                <label for="feminino">Masculino</label>
-                <br>
-                <input type="radio" id="feminino" name="genero" value="2" <?php echo ($sexo == 2) ? 'checked' : '' ?> required>
-                <label for="masculino">Feminino</label>
-                <br>
-                <input type="radio" id="naoInformar" name="genero" value="3" <?php echo ($sexo == 3) ? 'checked' : '' ?> required>
-                <label for="naoInformar">Não informar</label>
-                <br><br>
-                <label for="data_nascimento"><b>Data de nascimento:</b></label>
-                <input type="date" name="data_nascimento" id="data_nascimento" value="<?php echo $dataNasc?>"required>
-                <br><br>
-                <div class="inputBox">
-                    <input type="text" name="cidade" id="cidade" class="inputUser" value="<?php echo $cidade?>"required>
-                    <label for="cidade" class="labelInput">Cidade</label>
-                </div>
-                <br><br>
-                <div class="inputBox">
-                    <input type="text" name="estado" id="estado" class="inputUser" value="<?php echo $estado?>"required>
-                    <label for="estado" class="labelInput">Estado</label>
-                </div>
-                <br><br>
-                <br><br>
-                <input type="hidden" name="ID_Usuario" value="<?php echo $ID_Usuario?>">
-                <input type="submit" name="update" id="update">
-            </fieldset>
-        </form>
-    </div>
-</body>
-</html>
+            </div>
+        </div>
+    </body>
+
+        <script>
+            const inputDataNascimento = document.getElementById('data_nascimento');
+            const errorText = document.getElementById("erro-data");
+            inputDataNascimento.addEventListener('change', function() {   
+                if (!validarDataNascimento(this.value)) {
+                    errorText.innerHTML = "Sua data de nascimento está em formato errado ou você é menor de 18 anos";
+                    this.style.border = "2px solid red";
+                    errorText.style.color = "red";
+                    this.value = '';
+                } else{
+                    this.style.border = ""; // removendo a borda
+                    errorText.style.color = ""; // removendo a cor
+                    errorText.innerHTML = "";
+                }
+            });
+    
+            function validateEscolha(select) {
+                if (select.value === "") {
+                    select.setCustomValidity("Escolha uma opção válida.");
+                } else {
+                    select.setCustomValidity("");
+                }
+            }
+
+            function validarDataNascimento(data) {
+                // Obtém a data atual
+                const dataAtual = new Date();
+                
+                // Obtém a data de nascimento do input e converte para um objeto Date
+                const dataNascimento = new Date(data);
+
+                // Verifica se a data de nascimento é maior que a data atual
+                if (dataNascimento > dataAtual) {
+                    return false;
+                }
+
+                // Calcula a idade a partir da data de nascimento
+                const diffAnos = dataAtual.getFullYear() - dataNascimento.getFullYear();
+                const diffMeses = dataAtual.getMonth() - dataNascimento.getMonth();
+                const diffDias = dataAtual.getDate() - dataNascimento.getDate();
+
+                // Verifica se a pessoa tem pelo menos 18 anos
+                if (diffAnos < 18 || (diffAnos === 18 && diffMeses < 0) || (diffAnos === 18 && diffMeses === 0 && diffDias < 0)) {
+                    return false;
+                }
+
+                // A data de nascimento é válida
+                return true;
+            }
+
+
+            const form = document.getElementById('form');
+            const campos = document.querySelectorAll('.required');
+            const spans = document.querySelectorAll('.span-required');
+            const regexLogin = /^\w{3,}$/; 
+            const regexSenha = /^.{8,}$/;
+            const regexCPF = /^\d{11}$/;
+            const regexTelefone = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+
+            form.querySelectorAll('input, select, textarea').forEach((element) => {
+                element.addEventListener('change', (event) => {
+                    
+                if (!regexCPF.test(campos[0].value)){
+                    setError(0);
+                    document.getElementById("submit").disabled = true;
+                    return;
+                } else {
+                    document.getElementById("submit").disabled = false;
+                    removeError(0);
+                }
+
+                if (!regexTelefone.test(campos[1].value)){
+                    setError(1);
+                    document.getElementById("submit").disabled = true; 
+                    return;
+                } else {
+                    document.getElementById("submit").disabled = false;
+                    removeError(1);
+                }
+
+                if (campos[2].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)){
+                    document.getElementById("submit").disabled = false;
+                    removeError(2);
+                    
+                } else {
+                    setError(2);
+                    document.getElementById("submit").disabled = true;
+                    return;
+                }
+
+                if (campos[3].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)){
+                    document.getElementById("submit").disabled = false;
+                    removeError(3);
+                    
+                    return;
+                } else {
+                    setError(3);
+                    document.getElementById("submit").disabled = true;
+                }
+
+                return true;
+                    
+                });
+            });
+            
+
+
+            
+
+            function setError(index){
+                campos[index].style.border = '2px solid #e63636'
+                spans[index].style.display = 'block';
+            }
+
+            function removeError(index){
+                campos[index].style.border = ''
+                spans[index].style.display = 'none';
+            }
+
+            function cpfValidate(){
+                if (!regexCPF.test(campos[0].value)){
+                    setError(0);
+                } else {
+                    removeError(0);
+                }
+            }
+
+            function telefoneValidate(){
+                if (!regexTelefone.test(campos[1].value)){
+                    setError(1);
+                } else {
+                    removeError(1);
+                }
+            }
+
+            function cidadeValidate(){
+                if (campos[2].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)){
+                    removeError(2);
+                } else {
+                    setError(2);
+                }
+            }
+
+            function estadoValidate(){
+                if (campos[3].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)){
+                    removeError(3);
+                } else {
+                    setError(3); 
+                }
+            }
+        </script>
+    </body>

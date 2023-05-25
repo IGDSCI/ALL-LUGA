@@ -36,7 +36,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Página Inicial - All Luga</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="Css/style.css">
     <link href="https://googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -64,42 +64,49 @@
             <a class = "nome-categoria" href="#"><img class="icone" src="Images/icone3.png">Esporte</a>
         </li>
     </ul>
-    <a class="linkproduto" href="#"> <div class="card-container">
-    <div id="produtos">
-        <div id="card-content">
-        <table class="table" id="tabela1">
-		<thead>
-			<tr>
-			<th class="tabela" scope="col">Nome</th>
-			<th class="tabela" scope="col">Descricao</th>
-			<th class="tabela" scope="col">Preço</th>
-			<th class="tabela" scope="col">Foto</th>
-			</tr>
-
-            <td></td>
-		</thead>
-		<tbody>
-			<?php
-				// Verifica se a consulta retornou resultados
-				if ($result2 && $result2->num_rows > 0) {
-					// Loop sobre cada linha de resultados
-					while ($linha = $result2->fetch_assoc()) {
+		<?php
+			// ... código anterior ...
+			// Verifica se a consulta retornou resultados
+			if ($result2 && $result2->num_rows > 0) {
+				echo '<div class="div-container" style="max-width: 1000px;">'; // Abre a div de container antes do loop e define a largura máxima
+				$count = 0; // Inicia o contador de elementos
+				// Loop sobre cada linha de resultados
+				while ($linha = $result2->fetch_assoc()) {
 					// Exibe os dados na tabela HTML
-					echo "<tr>";
-					echo "<td>".$linha['Nome']."</td>";
-					echo "<td>".$linha['Descricao']."</td>";
-					echo "<td>".$linha['Preco']."</td>";
-                    echo "<td><img width=100px src=".$linha['Foto']."></td>";
-					echo "</tr>";
-					}
-				} else {
-					// Se a consulta não retornou resultados, exibe uma mensagem de erro
-					echo "Nenhum registro encontrado.";
+					echo "<div class='item' id='card-content' style='width: 19%; display: inline-block; margin-right: 1%; margin-bottom: 20px;'>";
+					echo "<td><img class='imagemproduto'  width=50px src=".$linha['Foto']."></td>";
+					echo "<td> <h1 class='nome-produto'> Nome: ".$linha['Nome']."</h1></td>";
+					echo "<td> <h1 class='descricao-produto'> Descrição:".$linha['Descricao']."</h1></td>";
+					echo "<td> <h1 class='preco-produto'> Preço: ".$linha['Preco']."</h1></td>";
+					echo "<td> <h1 class='descricao-produto'> Categoria: ".$linha['TipoCategoria']."</h1></td>";
+					echo "<button class='botao-comprar'>Alugar</button>";
+					echo "</div>";
 				}
-			?>
-		</tbody>
-	</table>
-        </div>
+				echo '</div>';
+			} else {
+				echo "Nenhum registro encontrado.";
+			}
+			if ($result2 && $result2->num_rows > 0) {
+				echo '<div class="div-container" style="max-width: 1000px;">'; // Abre a div de container antes do loop e define a largura máxima
+				$count = 0; // Inicia o contador de elementos
+				// Loop sobre cada linha de resultados
+				while ($linha = $result2->fetch_assoc()) {
+					// Exibe os dados na tabela HTML
+					echo "<div class='item' id='card-content' style='width: 19%; display: inline-block; margin-right: 1%; margin-bottom: 20px;'>";
+					echo "<td><img class='imagemproduto'  width=50px src=".$linha['Foto']."></td>";
+					echo "<td> <h1 class='nome-produto'> Nome: ".$linha['Nome']."</h1></td>";
+					echo "<td> <h1 class='descricao-produto'> Descrição:".$linha['Descricao']."</h1></td>";
+					echo "<td> <h1 class='preco-produto'> Preço: ".$linha['Preco']."</h1></td>";
+					echo "<td> <h1 class='descricao-produto'> Categoria: ".$linha['TipoCategoria']."</h1></td>";
+					echo "<button class='botao-comprar'>Alugar</button>";
+					echo "</div>";
+				}
+				echo '</div>';
+			} else {
+				echo "Nenhum registro encontrado.";
+			}
+		?>
+
         
 
 </body>
