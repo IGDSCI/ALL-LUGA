@@ -31,7 +31,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <title>Página Inicial - All Luga</title>
     <link rel="stylesheet" type="text/css" href="Css/style.css">
     <link href="https://googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
