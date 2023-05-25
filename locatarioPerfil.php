@@ -150,7 +150,7 @@ $result2 = $conexao->query($sql2);
 				<div class="header-content">
 					<h1>LOCATÁRIO</h1>
 					<button class="sair editar"><a href="sair.php">Sair</a></button> </button>
-					<button class='chamada-anuncio editar'><a href='principal.php'>Principal</a></button>
+					<button class='chamada-anuncio editar'><a href='principal2.php'>Principal</a></button>
 
 
 					<h2 class="header-h2">Lorem ipsum dolor sit amet, consectetuer adipiscing.<br> elit, sed diam lorem Lorem.</h2>
@@ -187,6 +187,7 @@ $result2 = $conexao->query($sql2);
 					} ?>
 				</div>
 			</div>
+			<br>
 
 
 			<div>
@@ -197,6 +198,7 @@ $result2 = $conexao->query($sql2);
 							<th class="tabela" scope="col">Preço</th>
 							<th class="tabela" scope="col">Descrição</th>
 							<th class="tabela" scope="col">Proprietário</th>
+							<th class="tabela" scope="col">Foto</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -219,6 +221,7 @@ $result2 = $conexao->query($sql2);
 						echo "<td>" . $linha['Preco'] . "</td>";
 						echo "<td>" . $linha['Descricao'] . "</td>";
 						echo "<td>" . $linha['Nome_Locador']. "</td>";
+						echo "<td><img width=100px src=" . $linha['Foto'] . "></td>";
 						echo "</tr>";
 					}
 				} else {

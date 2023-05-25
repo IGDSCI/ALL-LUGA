@@ -25,7 +25,8 @@ $sql2 = "SELECT tb_produto.*, tb_usuario.Login, tb_categoria.TipoCategoria
 	FROM tb_produto
 	INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
 	INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
-	WHERE Login = '$login'
+	LEFT JOIN tb_aluguel ON tb_aluguel.ID_Produto = tb_produto.ID_Produto
+	WHERE Login = '$login' AND tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL
 	ORDER BY tb_produto.ID_Produto DESC";
 
 $result = $conexao->query($sql);
@@ -166,7 +167,6 @@ $result2 = $conexao->query($sql2);
 				<table class="table" id="tabela2">
 					<thead>
 						<tr>
-							<th class="tabela" scope="col">#</th>
 							<th class="tabela" scope="col">Nome</th>
 							<th class="tabela" scope="col">Descrição</th>
 							<th class="tabela" scope="col">Preço</th>
@@ -184,7 +184,6 @@ $result2 = $conexao->query($sql2);
 							while ($linha = $result2->fetch_assoc()) {
 								// Exibe os dados na tabela HTML
 								echo "<tr>";
-								echo "<td>" . $linha['ID_Produto'] . "</td>";
 								echo "<td>" . $linha['Nome'] . "</td>";
 								echo "<td>" . $linha['Descricao'] . "</td>";
 								echo "<td> R$" . $linha['Preco'] . "</td>";
@@ -244,6 +243,50 @@ $result2 = $conexao->query($sql2);
 						}
 						?>
 					</tbody>
+
+					<tbody>
+						<thead>
+							<tr>
+								<th class="tabela" scope="col">Nome</th>
+								<th class="tabela" scope="col">Descrição</th>
+								<th class="tabela" scope="col">Preço</th>
+								<th class="tabela" scope="col">Proprietário</th>
+								<th class="tabela" scope="col">Categoria</th>
+								<th class="tabela" scope="col">Foto</th>
+							</tr>
+						</thead>
+						<?php
+						// Consulta SQL para recuperar os dados da tb_aluguel
+						$sql4 = "SELECT tb_produto.*, tb_usuario.Login, tb_categoria.TipoCategoria
+						FROM tb_produto
+						INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
+						INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
+						LEFT JOIN tb_aluguel ON tb_aluguel.ID_Produto = tb_produto.ID_Produto
+						WHERE Login = '$login' AND tb_aluguel.Permissao = 1
+						ORDER BY tb_produto.ID_Produto DESC";
+						$resultado4 = $conexao->query($sql4);
+
+						// Verifica se a consulta retornou resultados
+						if ($resultado4 && $resultado4->num_rows > 0) {
+							// Loop sobre cada linha de resultados
+							while ($linha = $resultado4->fetch_assoc()) {
+								// Exibe os dados na tabela HTML
+								echo "<tr>";
+								echo "<td>" . $linha['Nome'] . "</td>";
+								echo "<td>" . $linha['Descricao'] . "</td>";
+								echo "<td> R$" . $linha['Preco'] . "</td>";
+								echo "<td>" . $linha['Login'] . "</td>";
+								echo "<td>" . $linha['TipoCategoria'] . "</td>";
+								echo "<td><img width=100px src=" . $linha['Foto'] . "></td>";
+								echo "</tr>";
+							}
+						} else {
+							// Se a consulta não retornou resultados, exibe uma mensagem de erro
+							echo "<td colspan='8'>Nenhum registro encontrado. </td>";
+						}
+						?>
+					</tbody>
+
 				</table>
 
 

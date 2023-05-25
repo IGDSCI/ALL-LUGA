@@ -1,9 +1,0 @@
-@font-face {
-    font-family: 'Commuters Sans';
-    src: local('Commuters Sans Regular'), local('Commuters-Sans-Regular'),
-        url('CommutersSans-Regular.woff2') format('woff2'),
-        url('CommutersSans-Regular.woff') format('woff'),
-        url('CommutersSans-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-  }

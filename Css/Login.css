@@ -81,7 +81,6 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: "Commuters Sans";
 }
 
 .right-control{
@@ -97,7 +96,7 @@ body{
     letter-spacing: 0px;
     color: #097FF5;
     opacity: 1;
-    font: 2em "Commuters Sans";
+    font: 2em "Rubik";
 }
 .form-control{
     display: flex;
@@ -155,7 +154,7 @@ a{
     width: 80%;
     margin-left: 5%;
     text-align: center;
-    font: normal normal normal 1.2em "Commuters Sans";
+    font: normal normal normal 1.2em "Rubik";
 
     letter-spacing: 2.9px;
     color: #FFFFFF;
