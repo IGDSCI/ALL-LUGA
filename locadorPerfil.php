@@ -49,10 +49,50 @@ $result2 = $conexao->query($sql2);
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik&display=swap" rel="stylesheet">
 	<style>
+		.header-content{
+    margin-top: -1.3%;
+    margin-left: 2%;
+	}
+		
+		.editar a {
+		padding-top: 0 auto;
+		text-align: left;
+		text-decoration: underline;
+		font: normal normal normal 12px/14px Commuters Sans;
+		letter-spacing: 0px;
+		color: #0E4597;
+		text-transform: uppercase;
+		opacity: 1;
+		text-decoration: none;
+		font: normal normal normal 0.9em "Rubik";
+		margin-right:0.7em;
+		}
+
+		button{
+			background: none;
+			color: inherit;
+			border: none;
+			padding: 0;
+			font: inherit;
+			cursor: pointer;
+			outline: inherit;
+			margin-bottom: 1%;
+			margin-left:2%;
+			
+		}
+
+
+		.editar a:hover{
+			border-bottom: 1px solid #000000;
+			color: #000000;
+			transition: 1s ease;
+		}
+		
 		.table {
 			width: 100%;
 			border-collapse: collapse;
 			margin-bottom: 20px;
+			margin-top: 5%;
 		}
 
 		.table th,
@@ -113,6 +153,7 @@ $result2 = $conexao->query($sql2);
 			max-width: 100%;
 			height: auto;
 		}
+
 	</style>
 </head>
 
@@ -126,11 +167,11 @@ $result2 = $conexao->query($sql2);
 
 				<div class="header-content">
 					<h1>LOCADOR</h1>
-					<button class="sair editar"><a href="sair.php">Sair</a></button> </button>
-					<button class='chamada-anuncio'><a href='principal.php'>Principal</a></button>
+					<button class="sair editar margin"><a href="sair.php">Sair</a></button> </button>
+					<button class='chamada-anuncio editar margin'><a href='principal.php'>Principal</a></button>
 
 
-					<h2 class="header-h2">Lorem ipsum dolor sit amet, consectetuer adipiscing.<br> elit, sed diam lorem Lorem.</h2>
+					<h2 class="header-h2 margin">Lorem ipsum dolor sit amet, consectetuer adipiscing.<br> elit, sed diam lorem Lorem.</h2>
 				</div>
 			</div>
 
@@ -157,7 +198,7 @@ $result2 = $conexao->query($sql2);
 							echo "<p> Tipo: " . $linha['Tipo'] . "</p>";
 							echo "<td>
 						<button class='editar'><a href='locadorEdit.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a></button>
-						<button class='chamada-anuncio'><a href='anuncio.php'>Anuncie um produto</a> </td>";
+						<button class='chamada-anuncio editar'><a href='anuncio.php'>Anuncie um produto</a> </td>";
 						}
 					} else {
 						echo "Nenhum registro encontrado.";
