@@ -51,24 +51,39 @@ $result2 = $conexao->query($sql2);
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik&display=swap" rel="stylesheet">
 	<style>
-		.editar {
-			padding: 5px 10px;
-			font-size: 14px;
-			font-weight: 400;
-			border: 2px solid #0A57A3;
-			border-radius: 5px;
-			cursor: pointer;
-			position: relative;
-			text-align: center;
-			overflow: hidden;
-			background-color: #0E4597;
+		.btn-control{
+			display: flex;
 		}
-
 		.editar a {
-			color: #fafafa;
-			text-decoration: none;
+			padding-top: 0 auto;
+		text-align: left;
+		text-decoration: underline;
+		font: normal normal normal 12px/14px Commuters Sans;
+		letter-spacing: 0px;
+		color: #0E4597;
+		text-transform: uppercase;
+		opacity: 1;
+		text-decoration: none;
+		font: normal normal normal 0.9em "Rubik";
+		margin-right:1em;
 		}
-
+		button{
+			background: none;
+			color: inherit;
+			border: none;
+			padding: 0;
+			font: inherit;
+			cursor: pointer;
+			outline: inherit;
+			margin-bottom: 0.5%;
+			margin-left:2%;
+		}
+		.editar a:hover{
+			border-bottom: 1px solid #000000;
+			color: #000000;
+			transition: 1s ease;
+		}
+		
 		.table {
 			width: 100%;
 			border-collapse: collapse;
@@ -149,8 +164,10 @@ $result2 = $conexao->query($sql2);
 
 				<div class="header-content">
 					<h1>LOCATÁRIO</h1>
-					<button class="sair editar"><a href="sair.php">Sair</a></button> </button>
-					<button class='chamada-anuncio editar'><a href='principal2.php'>Principal</a></button>
+					<div class="btn-control">
+						<div class="sair editar"><a href="sair.php">Sair</a></div>
+						<div class='chamada-anuncio editar'><a href='principal2.php'>Principal</a></div>
+					</div>
 
 
 					<h2 class="header-h2">Lorem ipsum dolor sit amet, consectetuer adipiscing.<br> elit, sed diam lorem Lorem.</h2>
@@ -179,7 +196,7 @@ $result2 = $conexao->query($sql2);
 							echo '<hr>';
 							echo "<p> Tipo: " . $linha['Tipo'] . "</p>";
 							echo "<td>
-						<button class='editar'><a href='locatarioEdit.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a>
+						<button class='editar'><a href='locatarioEdit.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a></button>
 					</td>";
 						}
 					} else {
