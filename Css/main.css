@@ -6,6 +6,10 @@ body{
     overflow: hidden;
 }
 
+.logo{
+    max-width: 10%;
+}
+
 p{
     font: normal normal 200 20px/25px "Open Sans";
     letter-spacing: 0px;
@@ -19,6 +23,20 @@ p{
 img{
     max-width: 100%;
     overflow: hidden;
+}
+
+.img-div img{
+    position: absolute;
+    max-width: 13%;
+    top: 1.5%;
+}
+
+.img-div img:hover{
+    opacity: 0.7;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
 }
 
 input[type="file"] {
@@ -49,11 +67,11 @@ h2{
     letter-spacing: 0px;
     color: #000000;
     opacity: 1;
-    margin-top: -7%;
+    margin-top: -5%;
 }
 
 .container-title{
-    margin-top: 8%;
+    margin-top: 10%;
 }
 
 .container-title h2{
@@ -205,9 +223,8 @@ input:focus{
 .submit-button{
     float: right;
     margin-top: 1.5%;
-    margin-right: 25%;
     width: 12%;
-    height: 5%;
+    height: 90%;
     background: #F6F6F6 0% 0% no-repeat padding-box;
     box-shadow: 0px 3px 6px #00000029;
     border-radius: 10px;
@@ -220,6 +237,8 @@ input:focus{
 
 .submit-button:hover {
     cursor: pointer;
+    opacity: 0.8;
+    transition: 1s ease;
 }
 
 .container-icons{

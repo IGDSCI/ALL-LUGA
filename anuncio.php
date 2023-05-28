@@ -69,9 +69,12 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
-  <button class="back" button><a href="locadorPerfil.php">Voltar</a></button>
+
   <section class="main-container">
     <section class="left-container">
+      <div class="img-div">
+      <a href="principal.php"> <img id="logo" src="Images/LOGOALLLUGA.png"></a>
+      </div>
       <section class="content-container">
         <div class="container-title">
           <h1>Cadastre aqui seu produto</h1>
@@ -79,11 +82,11 @@ if (isset($_POST['submit'])) {
           <div class="form-container">
           <h2><?php if (isset($result1)) echo $sucesso ?></h2>
             <form enctype="multipart/form-data" class="form" action="anuncio.php" method="POST">
-              <input type="text" class="input-text" id="nome" name="nome" placeholder="Nome do produto" required>
+              <input type="text" class="input-text" id="nome" name="nome" placeholder="Nome do Produto" required>
 
               <input type="text" class="input-text" id="descricao" name="descricao" placeholder="Descrição" required>
 
-              <input type="number" step="any" class="input-text" id="preco" name="preco" placeholder="Preco" required>
+              <input type="number" step="any" class="input-text" id="preco" name="preco" placeholder="Preço" required>
 
               <div class="input-text">
                 <h3 id="file-name">Foto do produto</h3>
