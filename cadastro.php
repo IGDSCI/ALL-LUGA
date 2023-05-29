@@ -249,7 +249,7 @@ if (isset($_POST['submit'])) {
 
                                 <div class="form-control">
                                     <div class=""></div>
-                                    <input type="text" class="input-text required" id="cep" name="cep" placeholder="CEP:" maxlength="9" required>
+                                    <input type="text" class="input-text required" id="cep" name="cep" placeholder="CEP:" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" maxlength="9" required>
                                 </div>
                                 <div class="form-control">
                                     <div class=""></div>
@@ -259,8 +259,6 @@ if (isset($_POST['submit'])) {
                                     <div class=""></div>
                                     <input type="text" class="input-text required" id="estado" name="estado" placeholder="Estado:"  readonly required>
                                 </div>
-
-                                
                                 <div class="form-control">
                                     <div class=""></div>
                                     <select name="escolha" class="input-text"  required>
