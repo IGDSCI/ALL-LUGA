@@ -197,6 +197,7 @@ $result2 = $conexao->query($sql2);
 							echo '<hr>';
 							echo "<p> Tipo: " . $linha['Tipo'] . "</p>";
 							echo "<td>
+							
 						<button class='editar'><a href='locadorEdit.php?ID_Usuario=$linha[ID_Usuario]'>Editar</a></button>
 						<button class='chamada-anuncio editar'><a href='anuncio.php'>Anuncie um produto</a> </td>";
 						}
@@ -216,7 +217,9 @@ $result2 = $conexao->query($sql2);
 							<th class="tabela" scope="col">...</th>
 							<th class="tabela" scope="col">Foto</th>
 						</tr>
+						
 					</thead>
+					
 					<tbody>
 						<?php
 						// Verifica se a consulta retornou resultados
