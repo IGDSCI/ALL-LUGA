@@ -173,7 +173,7 @@ if (isset($_POST['submit'])) {
 }
     .radio-control label {
         color: white;
-        align-itens: center;
+        
     }
 
 
@@ -522,10 +522,6 @@ if (isset($_POST['submit'])) {
                     event.preventDefault();
                     return false;
                 }
-            }
-
-            
-
-            
+            } 
     </script>
     </body>

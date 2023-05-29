@@ -183,12 +183,12 @@ if (!empty($_GET['ID_Usuario'])) {
                     </div>
                     <div class="form-control">
 
-                        <input type="text" class="input-text required" id="input-login" value="<?php echo $cpf ?>" name="cpf" placeholder="CPF:"  required>
+                        <input type="text" class="input-text" id="cpf" value="<?php echo $cpf ?>" maxlength="14" name="cpf" placeholder="CPF:"  required>
                     </div>
                     <span class='span-required'>Formato esperado: XXXXXXXXXXX</span>
                     <div class="form-control">
 
-                        <input type="text" class="input-text required" id="input-login" name="telefone" value="<?php echo $telefone ?>" placeholder="Telefone:"  required>
+                        <input type="text" class="input-text required" id="tel" name="telefone" maxlength="14" value="<?php echo $telefone ?>" placeholder="Telefone:" oninput="telefoneValidate()"  required>
                     </div>
                     <span class='span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
                     <div class="form-control">
@@ -289,13 +289,12 @@ if (!empty($_GET['ID_Usuario'])) {
     const spans = document.querySelectorAll('.span-required');
     const regexLogin = /^\w{3,}$/;
     const regexSenha = /^.{8,}$/;
-    /*const regexCPF = /^\d{11}$/;
-    const regexTelefone = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;*/
+    const regexTelefone = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/;
 
     form.querySelectorAll('input, select, textarea').forEach((element) => {
         element.addEventListener('change', (event) => {
 
-            if (!regexCPF.test(campos[0].value)) {
+            if (!regexTelefone.test(campos[0].value)) {
                 setError(0);
                 document.getElementById("submit").disabled = true;
                 return;
@@ -304,43 +303,10 @@ if (!empty($_GET['ID_Usuario'])) {
                 removeError(0);
             }
 
-            if (!regexTelefone.test(campos[1].value)) {
-                setError(1);
-                document.getElementById("submit").disabled = true;
-                return;
-            } else {
-                document.getElementById("submit").disabled = false;
-                removeError(1);
-            }
-
-            if (campos[2].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
-                document.getElementById("submit").disabled = false;
-                removeError(2);
-
-            } else {
-                setError(2);
-                document.getElementById("submit").disabled = true;
-                return;
-            }
-
-            if (campos[3].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
-                document.getElementById("submit").disabled = false;
-                removeError(3);
-
-                return;
-            } else {
-                setError(3);
-                document.getElementById("submit").disabled = true;
-            }
-
             return true;
 
         });
     });
-
-
-
-
 
     function setError(index) {
         campos[index].style.border = '2px solid #e63636'
@@ -352,35 +318,11 @@ if (!empty($_GET['ID_Usuario'])) {
         spans[index].style.display = 'none';
     }
 
-    // function cpfValidate() {
-    //     if (!regexCPF.test(campos[0].value)) {
-    //         setError(0);
-    //     } else {
-    //         removeError(0);
-    //     }
-    // }
-
-    // function telefoneValidate() {
-    //     if (!regexTelefone.test(campos[1].value)) {
-    //         setError(1);
-    //     } else {
-    //         removeError(1);
-    //     }
-    // }
-
-    function cidadeValidate() {
-        if (campos[2].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
-            removeError(2);
+    function telefoneValidate(){
+        if (!regexTelefone.test(campos[0].value)){
+            setError(0);
         } else {
-            setError(2);
-        }
-    }
-
-    function estadoValidate() {
-        if (campos[3].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
-            removeError(3);
-        } else {
-            setError(3);
+            removeError(0);
         }
     }
 </script>

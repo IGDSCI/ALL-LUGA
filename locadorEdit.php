@@ -218,12 +218,12 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="form-control">
 
-                        <input type="text" class="input-text required" id="cpf" value="<?php echo $cpf ?>" name="cpf" placeholder="CPF:" /*oninput="cpfValidate()"*/ required>
+                        <input type="text" class="input-text" id="cpf" value="<?php echo $cpf ?>" name="cpf" placeholder="CPF:" maxlength="14" required>
                     </div>
                     <span class='span-required'>Formato esperado: XXXXXXXXXXX</span>
                     <div class="form-control">
 
-                        <input type="text" class="input-text required" id="tel" name="telefone" value="<?php echo $telefone ?>" placeholder="Telefone:" oninput="telefoneValidate()" required>
+                        <input type="text" class="input-text required" id="tel" name="telefone" value="<?php echo $telefone ?>" placeholder="Telefone:" maxlength="14" oninput="telefoneValidate()" required>
                     </div>
                     <span class='span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
                     <div class="form-control">
@@ -247,11 +247,11 @@ if (isset($_POST['submit'])) {
                         <input type="text" class="input-text required" id="cep" name="cep" placeholder="CEP:" maxlength="9" value="<?php echo $cep ?>" maxlength="9" required>
                     </div>
                     <div class="form-control">
-                        <input type="text" class="input-text required" id="cidade" name="cidade" placeholder="Cidade:"   value="<?php echo $cidade ?>" required>
+                        <input type="text" class="input-text required" id="cidade" name="cidade" placeholder="Cidade:"   value="<?php echo $cidade ?>" readonly required>
                     </div>
                     <span class='span-required'>A cidade dever ser escrita somente com letras</span>
                     <div class="form-control">
-                        <input type="text" class="input-text required" id="estado" name="estado" placeholder="Estado:" value="<?php echo $estado ?>"  required>
+                        <input type="text" class="input-text required" id="estado" name="estado" placeholder="Estado:" value="<?php echo $estado ?>"  readonly required>
                     </div>
                     <span class='span-required'>O estado dever ser escrito somente com letras</span>
                     <div class="form-control">
@@ -321,50 +321,18 @@ if (isset($_POST['submit'])) {
     const form = document.getElementById('form');
     const campos = document.querySelectorAll('.required');
     const spans = document.querySelectorAll('.span-required');
-    const regexLogin = /^\w{3,}$/;
-    const regexSenha = /^.{8,}$/;
-    /*const regexCPF = /^\d{11}$/;*/
-    const regexTelefone = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+    const regexTelefone = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/;
 
     form.querySelectorAll('input, select, textarea').forEach((element) => {
         element.addEventListener('change', (event) => {
 
-            if (!regexCPF.test(campos[0].value)) {
+            if (!regexTelefone.test(campos[0].value)) {
                 setError(0);
                 document.getElementById("submit").disabled = true;
                 return;
             } else {
                 document.getElementById("submit").disabled = false;
                 removeError(0);
-            }
-
-            if (!regexTelefone.test(campos[1].value)) {
-                setError(1);
-                document.getElementById("submit").disabled = true;
-                return;
-            } else {
-                document.getElementById("submit").disabled = false;
-                removeError(1);
-            }
-
-            if (campos[2].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
-                document.getElementById("submit").disabled = false;
-                removeError(2);
-
-            } else {
-                setError(2);
-                document.getElementById("submit").disabled = true;
-                return;
-            }
-
-            if (campos[3].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
-                document.getElementById("submit").disabled = false;
-                removeError(3);
-
-                return;
-            } else {
-                setError(3);
-                document.getElementById("submit").disabled = true;
             }
 
             return true;
@@ -395,10 +363,10 @@ if (isset($_POST['submit'])) {
     // }
 
     function telefoneValidate() {
-        if (!regexTelefone.test(campos[1].value)) {
-            setError(1);
+        if (!regexTelefone.test(campos[0].value)) {
+            setError(0);
         } else {
-            removeError(1);
+            removeError(0);
         }
     }
 
