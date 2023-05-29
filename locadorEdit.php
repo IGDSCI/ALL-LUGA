@@ -64,40 +64,121 @@ if (isset($_POST['submit'])) {
 ?>
 
 <html lang="pt-br">
-
 <head>
     <title> All Luga </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="Css/Cadastro.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" type="text/css" href="Css/style.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <style>
-        .custom-toastfy {
-            font-family: 'Gotham';
-            src: url('../js/Gotham-Book.eot');
-            src: url('../js/Gotham-Book.eot?#iefix') format('embedded-opentype'),
-                url('../js/Gotham-Book.woff2') format('woff2'),
-                url('../js/Gotham-Book.woff') format('woff'),
-                url('../js/Gotham-Book.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-            font-display: swap;
-        }
+    
+          <style>
+    @import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat&family=Roboto+Condensed:wght@300&display=swap');
+
+    * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --cor-primaria: #0A2647;
+        --cor-secundaria: #144272;
+        --cor-terciaria: #205295;
+        --cor-quaternaria: #2C74B3; 
+        --cor-quintenaria: #d7d7d7;
+    }
+
+
+    .main-section {
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url(arquivos/background.jpg);
+        background-size: 1920px 1080px;
+        
+    }
+
+    h2 {
+        text-align: center;
+        color: white;
+        margin: 10px
+    }
+
+    .right-container {
+        width: 450px;
+        height: 800px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 3px;
+        background-image: linear-gradient(to right, var(--cor-quaternaria), var(--cor-primaria));
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 1px 1px 1px 1px black;
+    }
+    .right-container:hover{
+        transform: scale(1.01);
+    }
+
+    .form-control {
+        margin-bottom: 20px;
+    }
+
+    .input-text {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 15px;
+        color: black;
+    }
+    .input-text:hover{
+        transform: scale(1.01);
+    }
+
+    .input-submit {
+    font-family: 'Roboto Condensed', sans-serif;
+    align-items: center;
+    align-self: center;
+    display: inline-block;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    text-align: center;
+    font-weight:bold;
+    text-decoration: none;
+    background-color: var(--cor-quaternaria);
+    color: white;
+    margin-left: 90px;
+}
+    .radio-control label {
+        color: white;
+        align-itens: center;
+    }
+
+
+    .input-submit:hover {
+        background-color: var(--cor-primaria);
+        transform: scale(1.1);
+    }
 
         .span-required {
             display: none;
-            color: red;
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+            font-size: 16px;
         }
-    </style>
+    
+</style>
 
 </head>
 
@@ -108,28 +189,23 @@ if (isset($_POST['submit'])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <!-- Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Sintony:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="Css/Cadastro.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="Css/style.css">
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
 </head>
 
 <body>
+<header class="cabecalho">
+        <a href="principal.php"> <img id="logo" src="Images/LOGOALLLUGA.png"></a>
+    </header>
     <div class="main-section">
-        <video id="background-video" muted poster="Images/Grupo 61.jpg">
-            <source src="Images/pexels-pixabay-854336-1920x1080-24fps.mp4" type="video/mp4">
-        </video>
+        
         <div class="left-container">
 
         </div>
 
         <div class="right-container">
-            <div class="right-control fade-in-image"> 
+            <div class="right-control fade-in-image">
                 <h2>EDITE SEU PERFIL</h2>
                 <form method="post" action="locadorSalvaEdit.php" id="form">
                     <div class="form-control">
@@ -142,12 +218,12 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="form-control">
 
-                        <input type="text" class="input-text required" id="cpf" value="<?php echo $cpf ?>" name="cpf" placeholder="CPF:" maxlength="14" required>
+                        <input type="text" class="input-text required" id="cpf" value="<?php echo $cpf ?>" name="cpf" placeholder="CPF:" /*oninput="cpfValidate()"*/ required>
                     </div>
                     <span class='span-required'>Formato esperado: XXXXXXXXXXX</span>
                     <div class="form-control">
 
-                        <input type="text" class="input-text required" id="tel" name="telefone" value="<?php echo $telefone ?>" maxlength="14" placeholder="Telefone:" oninput="telefoneValidate()" required>
+                        <input type="text" class="input-text required" id="tel" name="telefone" value="<?php echo $telefone ?>" placeholder="Telefone:" oninput="telefoneValidate()" required>
                     </div>
                     <span class='span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
                     <div class="form-control">
@@ -248,11 +324,19 @@ if (isset($_POST['submit'])) {
     const regexLogin = /^\w{3,}$/;
     const regexSenha = /^.{8,}$/;
     /*const regexCPF = /^\d{11}$/;*/
-    const regexTelefone = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/;
+    const regexTelefone = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
 
     form.querySelectorAll('input, select, textarea').forEach((element) => {
         element.addEventListener('change', (event) => {
 
+            if (!regexCPF.test(campos[0].value)) {
+                setError(0);
+                document.getElementById("submit").disabled = true;
+                return;
+            } else {
+                document.getElementById("submit").disabled = false;
+                removeError(0);
+            }
 
             if (!regexTelefone.test(campos[1].value)) {
                 setError(1);
@@ -261,6 +345,26 @@ if (isset($_POST['submit'])) {
             } else {
                 document.getElementById("submit").disabled = false;
                 removeError(1);
+            }
+
+            if (campos[2].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
+                document.getElementById("submit").disabled = false;
+                removeError(2);
+
+            } else {
+                setError(2);
+                document.getElementById("submit").disabled = true;
+                return;
+            }
+
+            if (campos[3].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
+                document.getElementById("submit").disabled = false;
+                removeError(3);
+
+                return;
+            } else {
+                setError(3);
+                document.getElementById("submit").disabled = true;
             }
 
             return true;
