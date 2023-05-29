@@ -41,9 +41,11 @@ if (!empty($_GET['ID_Produto'])) {
 </head>
 
 <body>
-  <button button><a href="login2.php">Voltar</a></button>
   <section class="main-container">
     <section class="left-container">
+    <div class="img-div">
+      <a href="principal.php"> <img id="logo" src="Images/LOGOALLLUGA.png"></a>
+      </div>
       <section class="content-container">
         <div class="container-title">
           <h1>Cadastre aqui seu produto</h1>
@@ -71,7 +73,7 @@ if (!empty($_GET['ID_Produto'])) {
                   <img src="Images/Grupo 13.png" alt="">
                 </div>
                 <div class="custom-select">
-                  <label for="">Categorias: </label>
+                  <label for=""> </label>
                   <select name="categoria"  required>
                     <option value="1">Eletrônicos</option>
                     <option value="2">Eletrodomésticos</option>
