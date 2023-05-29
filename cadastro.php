@@ -208,7 +208,7 @@ if (isset($_POST['submit'])) {
                     
                         <div class="right-control fade-in-image">
                             <h2>FAÇA SEU CADASTRO</h2>
-                            <form id="form" method="post" action="cadastro.php">
+                            <form id="form" method="post" action="cadastro.php"> 
                                 <div class="form-control">
                                     <input type="text" class="input-text required" id="input-login" name="login" placeholder="Nome:" oninput="loginValidate()" required>
                                 </div>
