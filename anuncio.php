@@ -108,6 +108,10 @@ if (isset($_POST['submit'])) {
                     <option value="2">Eletrodomésticos</option>
                     <option value="3">Utensílios</option>
                     <option value="4">Esportes</option>
+                    <option value="5">Imóvel</option>
+                    <option value="6">Veículo</option>
+                    <option value="7">Vestimentas</option>
+                    <option value="8">Artigos de festas</option>
                   </select>
                 </div>
                 <br><br>
@@ -132,10 +136,6 @@ if (isset($_POST['submit'])) {
     <div class="container-icons fade-in-image" id="containerIcons">
       <div class="line-container">
         <img src="Images/Retângulo 5.png" alt="">
-      </div>
-      <div class="footer-icons">
-        <img src="Images/Icon awesome-facebook.png" alt="">
-        <img src="Images/Icon awesome-pinterest.png" alt="">
       </div>
 
     </div>
