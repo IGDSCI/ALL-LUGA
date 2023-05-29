@@ -49,8 +49,12 @@ CREATE TABLE `tb_categoria` (
 INSERT INTO `tb_categoria` (`ID_Categoria`, `TipoCategoria`) VALUES
 (1, 'Eletrônicos'),
 (2, 'Eletrodomésticos'),
-(3, 'Utensílios'),
-(4, 'Esportes');
+(3, 'Acessórios'),
+(4, 'Esportes'),
+(5, 'Imóvel'),
+(6, 'Veículo'),
+(7, 'Vestimentas'),
+(8, 'Artigos de festas');
 
 CREATE TABLE `tb_produto` (
     `ID_Produto` int PRIMARY KEY AUTO_INCREMENT,

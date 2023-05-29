@@ -111,7 +111,7 @@ $result2 = $conexao->query($sql2);
 
 
     function searchData() {
-        window.location = 'principal.php?search=' + search.value;
+        window.location = 'principal2.php?search=' + search.value;
     }
 </script>
 

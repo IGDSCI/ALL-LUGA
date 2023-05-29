@@ -54,24 +54,9 @@ $result2 = $conexao->query($sql2);
 			<a href="login.php" class="botoes">Entrar como locatário</a>
 		</div>
 	</header>
-	<ul class="categorias">
-		<li>
-			<a class="nome-categoria" href="#"><img class="icone" src="Images/icone.png">Comida</a>
-		</li>
-		<li>
-			<a class="nome-categoria" href="#"><img class="icone" src="Images/icone2.png">Roupa</a>
-		</li>
-		<li>
+	
 
-			<a class="nome-categoria" href="#"><img class="icone" src="Images/icone3.png">Esporte</a>
-		</li>
-	</ul>
-
-	<div class="botoes-simples">
-		<a href="outra_pagina1.php" class="botao">Página 1</a>
-		<a href="outra_pagina2.php" class="botao">Página 2</a>
-		<a href="outra_pagina3.php" class="botao">Página 3</a>
-	</div>
+	
 
 	<?php
 	// ... código anterior ...
@@ -82,7 +67,7 @@ $result2 = $conexao->query($sql2);
 		// Loop sobre cada linha de resultados
 		while ($linha = $result2->fetch_assoc()) {
 			// Exibe os dados na tabela HTML
-			echo "<div class='item' id='card-content' style='width: 19%; display: inline-block; margin-right: 1%; margin-bottom: 20px;'>";
+			echo "<div class='item' id='card-content' style='width: 25%; display: inline-block; margin-right: 1%; margin-bottom: 20px;'>";
 			echo "<td><img class='imagemproduto'  width=50px src=" . $linha['Foto'] . "></td>";
 			echo "<td> <h1 class='nome-produto'> Nome: " . $linha['Nome'] . "</h1></td>";
 			echo "<td> <h1 class='preco-produto'> Preço: " . $linha['Preco'] . "</h1></td>";
