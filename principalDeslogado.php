@@ -36,7 +36,7 @@ $result2 = $conexao->query($sql2);
 
 <body>
     <header class="cabecalho">
-        <a href="principal.php"> <img id="logo" src="Images/LOGOALLLUGA.png"></a>
+        <a href="principalDeslogado.php"> <img id="logo" src="Images/LOGOALLLUGA.png"></a>
         <div class="pesquisa__itens">
             <input type="search" placeholder="Pesquisar..." id="pesquisar">
             <button id="botao__busca" onclick="searchData()"><img id="lupa" src="Images/lupa.png"></button>
@@ -80,7 +80,7 @@ $result2 = $conexao->query($sql2);
 					echo "<td> <h1 class='nome-produto'> Nome: ".$linha['Nome']."</h1></td>";
 					echo "<td> <h1 class='preco-produto'> Preço: ".$linha['Preco']."</h1></td>";
 					echo "<td> <h1 class='descricao-produto'>Proprietário: ".$linha['Login']."</h1></td>";
-					echo "<button class='botao-comprar'><a href='telaAluguel.php?id=".$linha['ID_Produto']."&imagem=".$linha['Foto']."'>Alugar</a></button>";
+					echo "<button class='botao-comprar'><a href='login2.php'>Alugar</a></button>";
 					echo "</div>";
 				}
 				echo '</div>';
@@ -102,6 +102,10 @@ $result2 = $conexao->query($sql2);
             searchData();
         }
     });
+
+    function searchData() {
+		window.location = 'principalDeslogado.php?search=' + search.value;
+	}
 
 </script>
 
