@@ -36,7 +36,7 @@ $result2 = $conexao->query($sql2);
 
 <body>
     <header class="cabecalho">
-        <a href="principal.php"> <img id="logo" src="Images/LOGOALLLUGA.png"></a>
+        <a href="principalDeslogado.php"> <img id="logo" src="Images/LOGOALLLUGA.png"></a>
         <div class="pesquisa__itens">
             <input type="search" placeholder="Pesquisar..." id="pesquisar">
             <button id="botao__busca" onclick="searchData()"><img id="lupa" src="Images/lupa.png"></button>
@@ -47,24 +47,6 @@ $result2 = $conexao->query($sql2);
             <a href="login2.php" class="botoes">Entrar como locatário</a>
         </div>
     </header>
-    <ul class="categorias">
-        <li>
-            <a class="nome-categoria" href="#"><img class="icone" src="Images/icone.png">Comida</a>
-        </li>
-        <li>
-            <a class="nome-categoria" href="#"><img class="icone" src="Images/icone2.png">Roupa</a>
-        </li>
-        <li>
-
-            <a class="nome-categoria" href="#"><img class="icone" src="Images/icone3.png">Esporte</a>
-        </li>
-    </ul>
-
-    <div class="botoes-simples">
-        <a href="outra_pagina1.php" class="botao">Página 1</a>
-        <a href="outra_pagina2.php" class="botao">Página 2</a>
-        <a href="outra_pagina3.php" class="botao">Página 3</a>
-    </div>
 
 	<?php
 			// ... código anterior ...
@@ -75,12 +57,12 @@ $result2 = $conexao->query($sql2);
 				// Loop sobre cada linha de resultados
 				while ($linha = $result2->fetch_assoc()) {
 					// Exibe os dados na tabela HTML
-					echo "<div class='item' id='card-content' style='width: 19%; display: inline-block; margin-right: 1%; margin-bottom: 20px;'>";
+					echo "<div class='item' id='card-content' style='width: 25%; display: inline-block; margin-right: 1%; margin-bottom: 20px;'>";
 					echo "<td><img class='imagemproduto'  width=50px src=".$linha['Foto']."></td>";
 					echo "<td> <h1 class='nome-produto'> Nome: ".$linha['Nome']."</h1></td>";
 					echo "<td> <h1 class='preco-produto'> Preço: ".$linha['Preco']."</h1></td>";
 					echo "<td> <h1 class='descricao-produto'>Proprietário: ".$linha['Login']."</h1></td>";
-					echo "<button class='botao-comprar'><a href='telaAluguel.php?id=".$linha['ID_Produto']."&imagem=".$linha['Foto']."'>Alugar</a></button>";
+					echo "<button class='botao-comprar'><a href='login2.php'>Alugar</a></button>";
 					echo "</div>";
 				}
 				echo '</div>';
@@ -102,6 +84,10 @@ $result2 = $conexao->query($sql2);
             searchData();
         }
     });
+
+    function searchData() {
+		window.location = 'principalDeslogado.php?search=' + search.value;
+	}
 
 </script>
 

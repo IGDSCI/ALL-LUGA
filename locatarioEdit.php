@@ -210,7 +210,7 @@ if (!empty($_GET['ID_Usuario'])) {
                     <span id="erro-data"></span>
                     <div class="form-control">
                         <div class=""></div>
-                        <input type="text" class="input-text required" id="cep" name="cep" placeholder="CEP:" maxlength="9" value="<?php echo $cep ?>" maxlength="9" required>
+                        <input type="text" class="input-text required" id="cep" name="cep" placeholder="CEP:" maxlength="9" value="<?php echo $cep ?>" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" maxlength="9" required>
                     </div>
                     <div class="form-control">
                         <input type="text" class="input-text required" id="cidade" name="cidade" placeholder="Cidade:" value="<?php echo $cidade ?>" readonly required>
