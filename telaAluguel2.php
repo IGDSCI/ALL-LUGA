@@ -45,7 +45,7 @@ if (isset($_GET['id'])) {
             echo "<input type='hidden' name='produtoID' value='" . $_GET['id'] . "'>"; // Inclua o ID do produto como um campo oculto
             echo "<input type='hidden' name='nomeLocador' value='" .$produto['Login']. "'>"; 
             echo "<input type='hidden' name='valor' value='" .$produto['Preco']. "'>";
-            echo "<input class='input-submit' type='submit' name='submit' id='submit' value='Enviar proposta'>";
+            echo "<input class='input-submit fade-in-image' type='submit' name='submit' id='submit' value='Enviar proposta'>";
             echo "</form>";
             echo "</div>";
 
@@ -220,4 +220,16 @@ if (isset($_GET['id'])) {
             width: 60px;
         }
 
+        .fade-in-image {
+    animation: fadeIn 3s;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
         </style>
