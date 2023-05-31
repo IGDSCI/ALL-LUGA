@@ -78,9 +78,9 @@ if (isset($_POST['submit'])) {
       <section class="content-container">
         <div class="container-title">
           <h1>Cadastre aqui seu produto</h1>
-          <h2 class="fade-in-image">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</h2>
+          <h2 class="fade-in-image">Para cadastrar seu produto, por favor, preencha as informações necessárias abaixo. Certifique-se de fornecer todos os detalhes relevantes para que os locatários possam conhecer seu produto de forma adequada!</h2>
           <div class="form-container">
-          <h2><?php if (isset($result1)) echo $sucesso ?></h2>
+          <h2><b><?php if (isset($result1)) echo $sucesso ?></b></h2>
             <form enctype="multipart/form-data" class="form" action="anuncio.php" method="POST">
               <input type="text" class="input-text" id="nome" name="nome" placeholder="Nome do Produto" required>
 

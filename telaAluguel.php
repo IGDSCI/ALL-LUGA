@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
 
         // Exemplo:
         echo "<div class='main-container'>";
-        echo "<a href='principal.php'><img class='logo' src='Images/LOGOALLLUGA.png'></a>";
+        echo "<a href='principal2.php'><img class='logo' src='Images/LOGOALLLUGA.png'></a>";
         echo "<div class='left-img'>";
         echo "<form action='adicionaAluguelBD.php' method='POST'>";
         echo "<img class='product-photo' src='" . $_GET['imagem'] . "' alt='Imagem do Produto'>";
@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
         echo "<h1>Detalhes do produto:</h1>"; 
         echo "<p>Nome: " . $produto['Nome'] . "</p>";
         echo "<p>Descrição: " . $produto['Descricao'] . "</p>";
-        echo "<p>Preço:" . $produto['Preco'] . "</p>";
+        echo "<p>Preço: R$" . $produto['Preco'] . "</p>";
         echo "<p>Categoria: " . $produto['TipoCategoria'] . "</p>";
         echo "<p>Proprietário: ".$produto['Login']."</p>";
         echo "<label for='campo2'>Dias:</label>";

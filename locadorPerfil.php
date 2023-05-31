@@ -162,7 +162,6 @@ $result2 = $conexao->query($sql2);
 		<div class="left-container fade-in-content">
 			<div class="header">
 				<div class="profile-picture">
-					<img src="Images/pexels-pixabay-39866.png" alt="">
 				</div>
 
 				<div class="header-content">
@@ -171,7 +170,7 @@ $result2 = $conexao->query($sql2);
 					<button class='chamada-anuncio editar margin'><a href='principal.php'>Principal</a></button>
 
 
-					<h2 class="header-h2 margin">Lorem ipsum dolor sit amet, consectetuer adipiscing.<br> elit, sed diam lorem Lorem.</h2>
+					<h2 class="header-h2 margin">Bem-vindo(a) ao seu perfil, <b><?php echo $login ?></b>! Aqui, você pode anunciar seus produtos, editar e personalizar suas informações. Além disso, você receberá propostas de aluguel para seus produtos e poderá acompanhar seu histórico de aluguéis.</h2>
 				</div>
 			</div>
 
@@ -208,6 +207,7 @@ $result2 = $conexao->query($sql2);
 				<br><br>
 				<table class="table" id="tabela2">
 					<thead>
+						<th class="tabela" scope="col" colspan="7">Seus Produtos</th>
 						<tr>
 							<th class="tabela" scope="col">Nome</th>
 							<th class="tabela" scope="col">Descrição</th>
@@ -242,12 +242,13 @@ $result2 = $conexao->query($sql2);
 							}
 						} else {
 							// Se a consulta não retornou resultados, exibe uma mensagem de erro
-							echo "<td colspan='8'>Nenhum registro encontrado. </td>";
+							echo "<td colspan='7'>Nenhum registro encontrado. </td>";
 						}
 						?>
 					</tbody>
-
+					
 					<thead>
+						<th class="tabela" scope="col" colspan="5">Suas Propostas</th>
 						<tr>
 							<th class="tabela" scope="col">Valor</th>
 							<th class="tabela" scope="col">Dias</th>
@@ -290,6 +291,7 @@ $result2 = $conexao->query($sql2);
 
 					<tbody>
 						<thead>
+							<th class="tabela" scope="col" colspan="6">Histórico de Aluguéis</th>
 							<tr>
 								<th class="tabela" scope="col">Nome</th>
 								<th class="tabela" scope="col">Descrição</th>
@@ -326,7 +328,7 @@ $result2 = $conexao->query($sql2);
 							}
 						} else {
 							// Se a consulta não retornou resultados, exibe uma mensagem de erro
-							echo "<td colspan='8'>Nenhum registro encontrado. </td>";
+							echo "<td colspan='6'>Nenhum registro encontrado. </td>";
 						}
 						?>
 					</tbody>
