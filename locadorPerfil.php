@@ -26,7 +26,7 @@ $sql2 = "SELECT tb_produto.*, tb_usuario.Login, tb_categoria.TipoCategoria
 	INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
 	INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
 	LEFT JOIN tb_aluguel ON tb_aluguel.ID_Produto = tb_produto.ID_Produto
-	WHERE Login = '$login' AND tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL
+	WHERE Login = '$login' AND (tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL)
 	ORDER BY tb_produto.ID_Produto DESC";
 
 $result = $conexao->query($sql);
