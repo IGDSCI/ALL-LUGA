@@ -211,7 +211,7 @@ $result2 = $conexao->query($sql2);
 						<tr>
 							<th class="tabela" scope="col">Nome</th>
 							<th class="tabela" scope="col">Descrição</th>
-							<th class="tabela" scope="col">Preço</th>
+							<th class="tabela" scope="col">Preço (diário)</th>
 							<th class="tabela" scope="col">Proprietário</th>
 							<th class="tabela" scope="col">Categoria</th>
 							<th class="tabela" scope="col">Foto</th>
@@ -250,7 +250,7 @@ $result2 = $conexao->query($sql2);
 					<thead>
 						<th class="tabela" scope="col" colspan="5">Suas Propostas</th>
 						<tr>
-							<th class="tabela" scope="col">Valor</th>
+							<th class="tabela" scope="col">Preço (diário)</th>
 							<th class="tabela" scope="col">Dias</th>
 							<th class="tabela" scope="col">Nome do Produto</th>
 							<th class="tabela" scope="col">Aceitar proposta</th>
@@ -297,7 +297,7 @@ $result2 = $conexao->query($sql2);
 							<tr>
 								<th class="tabela" scope="col">Nome</th>
 								<th class="tabela" scope="col">Descrição</th>
-								<th class="tabela" scope="col">Preço</th>
+								<th class="tabela" scope="col">Preço (diário)</th>
 								<th class="tabela" scope="col">Proprietário</th>
 								<th class="tabela" scope="col">Categoria</th>
 								<th class="tabela" scope="col">Foto</th>

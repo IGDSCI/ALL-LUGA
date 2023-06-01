@@ -86,7 +86,7 @@ if (isset($_POST['submit'])) {
 
               <input type="text" class="input-text" id="descricao" name="descricao" placeholder="Descrição" required>
 
-              <input type="number" step="any" class="input-text" id="preco" name="preco" placeholder="Preço" required>
+              <input type="number" step="any" class="input-text" id="preco" name="preco" placeholder="Preço (diário)" required>
 
               <div class="input-text">
                 <h3 id="file-name">Foto do produto</h3>

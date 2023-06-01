@@ -234,7 +234,7 @@ $result2 = $conexao->query($sql2);
 					<th class="tabela" scope="col">ID</th>
 					<th class="tabela" scope="col">Nome</th>
 					<th class="tabela" scope="col">Descrição</th>
-					<th class="tabela" scope="col">Preço</th>
+					<th class="tabela" scope="col">Preço (diário)</th>
 					<th class="tabela" scope="col">Proprietário</th>
 					<th class="tabela" scope="col">Categoria</th>
 					<th class="tabela" scope="col">Ações</th>

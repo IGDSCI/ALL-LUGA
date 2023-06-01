@@ -212,7 +212,7 @@ $result2 = $conexao->query($sql2);
 						<th class="tabela" scope="col" colspan="6">Histórico de Aluguéis</th>
 						<tr>
 							<th class="tabela" scope="col">Nome</th>
-							<th class="tabela" scope="col">Preço</th>
+							<th class="tabela" scope="col">Preço (diário)</th>
 							<th class="tabela" scope="col">Descrição</th>
 							<th class="tabela" scope="col">Proprietário</th>
 							<th class="tabela" scope="col">Foto</th>

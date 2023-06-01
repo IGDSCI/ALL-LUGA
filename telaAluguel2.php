@@ -39,7 +39,7 @@ if (isset($_GET['id'])) {
             echo "<h1>Detalhes do produto:</h1>"; 
             echo "<p>Nome: " . $produto['Nome'] . "</p>";
             echo "<p>Descrição: " . $produto['Descricao'] . "</p>";
-            echo "<p>Preço: R$" . $produto['Preco'] . "</p>";
+            echo "<p>Preço (diário): R$" . $produto['Preco'] . "</p>";
             echo "<p>Categoria: " . $produto['TipoCategoria'] . "</p>";
             echo "<p>Proprietário: ".$produto['Login']."</p>";
             echo "<input type='hidden' name='produtoID' value='" . $_GET['id'] . "'>"; // Inclua o ID do produto como um campo oculto
