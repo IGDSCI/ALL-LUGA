@@ -82,6 +82,7 @@ if (isset($_POST['submit'])) {
 
        
         <link rel="stylesheet" type="text/css" href="Css/style.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
      
 
@@ -102,6 +103,13 @@ if (isset($_POST['submit'])) {
         --cor-quaternaria: #2C74B3; 
         --cor-quintenaria: #d7d7d7;
     }
+
+    .custom-toastfy{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+            }
 
 
     .main-section {
@@ -286,7 +294,7 @@ if (isset($_POST['submit'])) {
                 duration: 12000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
+                gravity: "bottom",
                 position: "right",
                 backgroundColor: "#0E4597",
             }).showToast();
@@ -299,7 +307,7 @@ if (isset($_POST['submit'])) {
                 duration: 12000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
+                gravity: "bottom",
                 position: "right",
                 backgroundColor: "#0E4597",
             }).showToast();
@@ -312,7 +320,7 @@ if (isset($_POST['submit'])) {
                 duration: 12000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
+                gravity: "bottom",
                 position: "right",
                 backgroundColor: "#0E4597",
             }).showToast();
@@ -325,7 +333,7 @@ if (isset($_POST['submit'])) {
                 duration: 12000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
+                gravity: "bottom",
                 position: "right",
                 backgroundColor: "#0E4597",
             }).showToast();
