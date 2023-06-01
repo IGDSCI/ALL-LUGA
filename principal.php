@@ -51,7 +51,7 @@ $result2 = $conexao->query($sql2);
 		</div>
 		<div class="botoes__container">
 			<a href="locadorPerfil.php" class="botoes">Visitar Perfil</a>
-			<a href="login.php" class="botoes">Entrar como locatário</a>
+			<a href="login2.php" class="botoes">Entrar como locatário</a>
 		</div>
 	</header>
 	
