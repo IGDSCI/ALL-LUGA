@@ -119,14 +119,14 @@ if (isset($_POST['submit'])) {
         align-items: center;
         min-height: 100vh;
         background-image: url(arquivos/background.jpg);
-        background-size: 1920px 1080px;
+        background-size: 100%;
         
     }
 
     h2 {
         text-align: center;
         color: white;
-        margin: 10px
+        margin: 10px;
     }
 
     .right-container {
@@ -164,19 +164,16 @@ if (isset($_POST['submit'])) {
 
     .input-submit {
     font-family: 'Roboto Condensed', sans-serif;
-    align-items: center;
-    align-self: center;
-    display: inline-block;
     padding: 10px 40px;
-    border: none;
     border-radius: 4px;
     font-size: 20px;
+    border:none;
     text-align: center;
     font-weight:bold;
     text-decoration: none;
     background-color: var(--cor-quaternaria);
     color: white;
-    margin-left: 90px;
+    margin-left: 30%;
 }
     .radio-control label {
         color: white;
@@ -278,6 +275,7 @@ if (isset($_POST['submit'])) {
                                         <option value="2" >Locador</option>
                                         <option value="3" >Locatário</option>
                                     </select>
+                                    
                                 </div>
                             
                             <input class="input-submit" type="submit" name="submit" id="submit" value="ENVIAR">
@@ -351,7 +349,8 @@ if (isset($_POST['submit'])) {
                 if (!validarDataNascimento(this.value)) {
                     errorText.innerHTML = "Sua data de nascimento está em formato errado ou você é menor de 18 anos";
                     this.style.border = "2px solid red";
-                    errorText.style.color = "red";
+                    errorText.style.color = "white";
+                    errorText.style.fontSize = "14px";
                     this.value = '';
                 } else{
                     this.style.border = ""; // removendo a borda
