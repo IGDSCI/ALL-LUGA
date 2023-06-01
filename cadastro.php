@@ -142,9 +142,7 @@ if (isset($_POST['submit'])) {
         align-items: center;
         box-shadow: 1px 1px 1px 1px black;
     }
-    .right-container:hover{
-        transform: scale(1.01);
-    }
+    
 
     .form-control {
         margin-bottom: 20px;
@@ -158,6 +156,7 @@ if (isset($_POST['submit'])) {
         font-family: 'Montserrat', sans-serif;
         font-size: 15px;
         color: black;
+        outline: 0;
     }
     .input-text:hover{
         transform: scale(1.01);
@@ -197,7 +196,7 @@ if (isset($_POST['submit'])) {
             font-weight: normal;
             font-style: normal;
             font-display: swap;
-            font-size: 16px;
+            font-size: 12px;
         }
     
 </style>
@@ -219,24 +218,29 @@ if (isset($_POST['submit'])) {
                             <form id="form" method="post" action="cadastro.php"> 
                                 <div class="form-control">
                                     <input type="text" class="input-text required" id="input-login" name="login" placeholder="Nome:" oninput="loginValidate()" required>
+                                    <span class = 'span-required'>O login deve possuir pelo menos 3 caracteres</span>
                                 </div>
-                                <span class = 'span-required'>O login deve possuir pelo menos 3 caracteres</span>
+                                
                                 <div class="form-control">  
                                     <input type="password" class="input-text required" id="input-senha" name="senha" placeholder="Senha:" oninput="senhaValidate()" required>
+                                    <span class = 'span-required'>A senha deve possuir pelo menos 8 caracteres</span>
                                 </div>
-                                <span class = 'span-required'>A senha deve possuir pelo menos 8 caracteres</span>
+                                
                                 <div class="form-control">  
                                     <input type="password" class="input-text required" id="input-senha" name="confirmaSenha" placeholder="Confirme sua senha:" oninput="senhaConfirmaValidate()"  required>
+                                    <span class = 'span-required'>A senha deve possuir pelo menos 8 caracteres</span>
                                 </div>
-                                <span class = 'span-required'>A senha deve possuir pelo menos 8 caracteres</span>
+                                
                                 <div class="form-control">
                                     <input type="text" class="input-text required" id="cpf" name="cpf" placeholder="CPF:"  maxlength="14" required>
+                                    <span class = 'span-required'>Formato esperado: XXXXXXXXXXX</span>
                                 </div>
-                                <span class = 'span-required'>Formato esperado: XXXXXXXXXXX</span>
+                                
                                 <div class="form-control">
                                     <input type="text" class="input-text required" id="tel" maxlength="14" name="telefone" onkeydown="return filterNumeric(event)" placeholder="Telefone:" oninput="telefoneValidate()" required>
+                                    <span class = 'span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
                                 </div>
-                                <span class = 'span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
+                                
                                 <div class="form-control ">
                                     <div class="input-text radio-control">
                                         
