@@ -293,19 +293,20 @@ $result2 = $conexao->query($sql2);
 
 					<tbody>
 						<thead>
-							<th class="tabela" scope="col" colspan="6">Histórico de Aluguéis</th>
+							<th class="tabela" scope="col" colspan="7">Histórico de Aluguéis</th>
 							<tr>
 								<th class="tabela" scope="col">Nome</th>
 								<th class="tabela" scope="col">Descrição</th>
 								<th class="tabela" scope="col">Preço (diário)</th>
 								<th class="tabela" scope="col">Proprietário</th>
 								<th class="tabela" scope="col">Categoria</th>
+								<th class="tabela" scope="col">Locatário</th>
 								<th class="tabela" scope="col">Foto</th>
 							</tr>
 						</thead>
 						<?php
 						// Consulta SQL para recuperar os dados da tb_aluguel
-						$sql4 = "SELECT tb_produto.*, tb_usuario.Login, tb_categoria.TipoCategoria
+						$sql4 = "SELECT tb_produto.*, tb_usuario.Login, tb_categoria.TipoCategoria, tb_aluguel.Nome_Locatario
 						FROM tb_produto
 						INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
 						INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
@@ -325,7 +326,9 @@ $result2 = $conexao->query($sql2);
 								echo "<td> R$" . $linha['Preco'] . "</td>";
 								echo "<td>" . $linha['Login'] . "</td>";
 								echo "<td>" . $linha['TipoCategoria'] . "</td>";
+								echo "<td>" . $linha['Nome_Locatario'] . "</td>";
 								echo "<td><img width=100px src=" . $linha['Foto'] . "></td>";
+								
 								echo "</tr>";
 							}
 						} else {

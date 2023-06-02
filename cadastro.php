@@ -229,8 +229,8 @@ if (isset($_POST['submit'])) {
                                 </div>
                                 
                                 <div class="form-control">
-                                    <input type="text" class="input-text required" id="cpf" name="cpf" placeholder="CPF:"  maxlength="14" required>
-                                    <span class = 'span-required'>Formato esperado: XXXXXXXXXXX</span>
+                                    <input type="text" class="input-text required" id="cpf" name="cpf" placeholder="CPF:"  maxlength="14" oninput="cpfValidate()" required>
+                                    <span class = 'span-required'>Formato esperado: XXX.XXX.XXX-XX</span>
                                 </div>
                                 
                                 <div class="form-control">
@@ -252,8 +252,9 @@ if (isset($_POST['submit'])) {
                                 <div class="form-control">
                                     <div class=""></div>
                                     <input type="date" name="data_nascimento" id="data_nascimento" class="input-text" required>
+                                    <span id="erro-data"></span>
                                 </div>
-                                <span id="erro-data"></span>
+                                
 
 
                                 <div class="form-control">
@@ -350,7 +351,7 @@ if (isset($_POST['submit'])) {
                     errorText.innerHTML = "Sua data de nascimento está em formato errado ou você é menor de 18 anos";
                     this.style.border = "2px solid red";
                     errorText.style.color = "white";
-                    errorText.style.fontSize = "14px";
+                    errorText.style.fontSize = "12px";
                     this.value = '';
                 } else{
                     this.style.border = ""; // removendo a borda
@@ -399,7 +400,7 @@ if (isset($_POST['submit'])) {
             const spans = document.querySelectorAll('.span-required');
             const regexLogin = /^\w{3,}$/; 
             const regexSenha = /^.{8,}$/;
-            const regexCPF = /^\d{14}$/;
+            const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
             const regexTelefone = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/;
 
 
