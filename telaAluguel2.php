@@ -68,11 +68,25 @@ if (isset($_GET['id'])) {
 
 
         <style>
-                body{
-        font-family: 'Commuters Sans';
-        margin: 0;
-        padding: 0;
-    }
+            @import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat&family=Roboto+Condensed:wght@300&display=swap');
+
+*{
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Montserrat', sans-serif;
+}
+body{
+    background-image: linear-gradient(to right, var(--cor-quaternaria), var(--cor-primaria));
+}
+
+:root {
+  --cor-primaria: #0A2647;
+  --cor-secundaria: #144272;
+  --cor-terciaria: #205295;
+  --cor-quaternaria: #2C74B3; 
+  --cor-quintenaria: #d7d7d7;
+}
+
 
     @font-face {
         font-family: 'Commuters Sans';
@@ -82,6 +96,7 @@ if (isset($_GET['id'])) {
             url('Fonts/CommutersSans-Regular.woff2') format('truetype');
         font-weight: 400;
         font-style: normal;
+        
     }
 
            .main-container{
@@ -92,6 +107,9 @@ if (isset($_GET['id'])) {
             justify-content: center;
             align-items: center;
             position: relative;
+            text-transform: uppercase;
+         
+            
            }
            .logo{
             position: absolute;
@@ -107,40 +125,56 @@ if (isset($_GET['id'])) {
             -moz-transition: all 0.2s ease;
             -ms-transition: all 0.2s ease;
            }
-           .product-photo{
-            max-width: 70%;
-            margin-left:25%
+           .left-img{
+            background-image:var(--cor-quintenaria);
+            box-shadow: 1px 1px 1px 1px black;
+            padding: 5px;
+            margin-top: 5%;
+            margin-right: 5%;
            }
+           .left-img:hover{
+            transform: scale(1.01);
+           }
+           .product-photo{
+            width: 65vh;
+            height:75vh;
+            }
+        
            .content{
             margin-right: 20%;
            }
            p{
             text-align: left;
-            font: normal normal normal 1.5em Commuters Sans;
             letter-spacing: 0px;
-            color: #585858;
+            color: var(--cor-quintenaria);
             opacity: 1;
            }
            .title{
+            display:left;
             text-align: left;
-            font: normal normal normal 40px/50px Commuters Sans;
-            letter-spacing: 0px;
-            color: #1E1E1E;
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 4%;
+            font-size:43px;
+            color: var(--cor-quintenaria);
             opacity: 1;
+            white-space: nowrap;
+            font-weight:bold;
            }
            .title-price{
             text-align: left;
-            font: normal normal normal 40px/50px Commuters Sans;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 30px;
             letter-spacing: 0px;
-            color: #1E1E1E;
+            color: var(--cor-quintenaria);
             opacity: 1;
-            margin-top:-7%;
+            margin-top:6%%;
+            white-space: nowrap;
            }
            h1{
             text-align: left;
             font: normal normal normal 24px/30px Commuters Sans;
             letter-spacing: 0px;
-            color: #0E4597;
+            color: var(--cor-quintenaria);
             opacity: 1;
            }
            .right{
@@ -159,7 +193,6 @@ if (isset($_GET['id'])) {
             margin-left: 5%;
             text-align: center;
             font: normal normal normal 1.2em "Commuters Sans";
-
             letter-spacing: 2.9px;
             color: #FFFFFF;
             text-transform: uppercase;
