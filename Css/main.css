@@ -340,9 +340,20 @@ input:focus{
     background-color: rgba(0, 0, 0, 0.1);
   }
 
-  @media only screen and (max-width: 1400px){
+  @media only screen and (max-width: 1300px){
+body{
+    overflow: scroll;
+}
 .form-container{
     margin-top: 8%;
 }
+.teste{
+    height: 100%;
+}
 
+.categories{
+    margin-top: -1.5%;
+}
   }
+
+
