@@ -39,12 +39,13 @@ if (isset($_GET['id'])) {
             echo "<h1>Detalhes do produto:</h1>"; 
             echo "<p>Nome: " . $produto['Nome'] . "</p>";
             echo "<p>Descrição: " . $produto['Descricao'] . "</p>";
-            echo "<p>Preço (diário): R$" . $produto['Preco'] . "</p>";
+            echo "<p>Preço:" . $produto['Preco'] . "</p>";
             echo "<p>Categoria: " . $produto['TipoCategoria'] . "</p>";
             echo "<p>Proprietário: ".$produto['Login']."</p>";
             echo "<input type='hidden' name='produtoID' value='" . $_GET['id'] . "'>"; // Inclua o ID do produto como um campo oculto
             echo "<input type='hidden' name='nomeLocador' value='" .$produto['Login']. "'>"; 
             echo "<input type='hidden' name='valor' value='" .$produto['Preco']. "'>";
+            echo "<input class='input-submit fade-in-image' type='submit' name='submit' id='submit' value='Enviar proposta'>";
             echo "</form>";
             echo "</div>";
 
@@ -68,25 +69,11 @@ if (isset($_GET['id'])) {
 
 
         <style>
-            @import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat&family=Roboto+Condensed:wght@300&display=swap');
-
-*{
-  padding: 0px;
-  margin: 0px;
-  font-family: 'Montserrat', sans-serif;
-}
-body{
-    background-image: linear-gradient(to right, var(--cor-quaternaria), var(--cor-primaria));
-}
-
-:root {
-  --cor-primaria: #0A2647;
-  --cor-secundaria: #144272;
-  --cor-terciaria: #205295;
-  --cor-quaternaria: #2C74B3; 
-  --cor-quintenaria: #d7d7d7;
-}
-
+                body{
+        font-family: 'Commuters Sans';
+        margin: 0;
+        padding: 0;
+    }
 
     @font-face {
         font-family: 'Commuters Sans';
@@ -96,7 +83,6 @@ body{
             url('Fonts/CommutersSans-Regular.woff2') format('truetype');
         font-weight: 400;
         font-style: normal;
-        
     }
 
            .main-container{
@@ -107,9 +93,6 @@ body{
             justify-content: center;
             align-items: center;
             position: relative;
-            text-transform: uppercase;
-         
-            
            }
            .logo{
             position: absolute;
@@ -125,56 +108,40 @@ body{
             -moz-transition: all 0.2s ease;
             -ms-transition: all 0.2s ease;
            }
-           .left-img{
-            background-image:var(--cor-quintenaria);
-            box-shadow: 1px 1px 1px 1px black;
-            padding: 5px;
-            margin-top: 5%;
-            margin-right: 5%;
-           }
-           .left-img:hover{
-            transform: scale(1.01);
-           }
            .product-photo{
-            width: 65vh;
-            height:75vh;
-            }
-        
+            max-width: 70%;
+            margin-left:25%
+           }
            .content{
             margin-right: 20%;
            }
            p{
             text-align: left;
+            font: normal normal normal 1.5em Commuters Sans;
             letter-spacing: 0px;
-            color: var(--cor-quintenaria);
+            color: #585858;
             opacity: 1;
            }
            .title{
-            display:left;
             text-align: left;
-            font-family: 'Montserrat', sans-serif;
-            margin-bottom: 4%;
-            font-size:43px;
-            color: var(--cor-quintenaria);
+            font: normal normal normal 40px/50px Commuters Sans;
+            letter-spacing: 0px;
+            color: #1E1E1E;
             opacity: 1;
-            white-space: nowrap;
-            font-weight:bold;
            }
            .title-price{
             text-align: left;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 30px;
+            font: normal normal normal 40px/50px Commuters Sans;
             letter-spacing: 0px;
-            color: var(--cor-quintenaria);
+            color: #1E1E1E;
             opacity: 1;
-            margin-top:6%%;
-            white-space: nowrap;
+            margin-top:-7%;
            }
            h1{
             text-align: left;
             font: normal normal normal 24px/30px Commuters Sans;
             letter-spacing: 0px;
-            color: var(--cor-quintenaria);
+            color: #0E4597;
             opacity: 1;
            }
            .right{
@@ -193,6 +160,7 @@ body{
             margin-left: 5%;
             text-align: center;
             font: normal normal normal 1.2em "Commuters Sans";
+
             letter-spacing: 2.9px;
             color: #FFFFFF;
             text-transform: uppercase;

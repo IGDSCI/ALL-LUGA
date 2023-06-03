@@ -89,13 +89,6 @@ if (isset($_POST['submit'])) {
         --cor-quintenaria: #d7d7d7;
     }
 
-    .custom-toastfy{
-        font-family: 'Montserrat', sans-serif;
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-            }
-
 
     .main-section {
         font-family: 'Montserrat', sans-serif;
@@ -104,19 +97,19 @@ if (isset($_POST['submit'])) {
         align-items: center;
         min-height: 100vh;
         background-image: url(arquivos/background.jpg);
-        background-size: 100%;
+        background-size: 1920px 1080px;
         
     }
 
     h2 {
         text-align: center;
         color: white;
-        margin: 10px;
+        margin: 10px
     }
 
     .right-container {
-        width: 30%;
-        height: 100%;
+        width: 450px;
+        height: 800px;
         background-color: #f2f2f2;
         padding: 20px;
         border-radius: 3px;
@@ -127,7 +120,9 @@ if (isset($_POST['submit'])) {
         align-items: center;
         box-shadow: 1px 1px 1px 1px black;
     }
-    
+    .right-container:hover{
+        transform: scale(1.01);
+    }
 
     .form-control {
         margin-bottom: 20px;
@@ -141,28 +136,30 @@ if (isset($_POST['submit'])) {
         font-family: 'Montserrat', sans-serif;
         font-size: 15px;
         color: black;
-        outline: 0;
     }
     .input-text:hover{
         transform: scale(1.01);
     }
 
-        .input-submit {
-        font-family: 'Roboto Condensed', sans-serif;
-        padding: 10px 40px;
-        border-radius: 4px;
-        font-size: 20px;
-        border:none;
-        text-align: center;
-        font-weight:bold;
-        text-decoration: none;
-        background-color: var(--cor-quaternaria);
-        color: white;
-        margin-left: 30%;
-    }
+    .input-submit {
+    font-family: 'Roboto Condensed', sans-serif;
+    align-items: center;
+    align-self: center;
+    display: inline-block;
+    padding: 10px 40px;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    text-align: center;
+    font-weight:bold;
+    text-decoration: none;
+    background-color: var(--cor-quaternaria);
+    color: white;
+    margin-left: 90px;
+}
     .radio-control label {
         color: white;
-        
+        align-itens: center;
     }
 
 
@@ -178,7 +175,7 @@ if (isset($_POST['submit'])) {
             font-weight: normal;
             font-style: normal;
             font-display: swap;
-            font-size: 12px;
+            font-size: 16px;
         }
     
 </style>
@@ -221,16 +218,14 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="form-control">
 
-                        <input type="text" class="input-text required" id="cpf" value="<?php echo $cpf ?>" name="cpf" placeholder="CPF:" maxlength="14" oninput="cpfValidate()" required>
-                        <span class='span-required'>Formato esperado: XXXXXXXXXXX</span>
+                        <input type="text" class="input-text" id="cpf" value="<?php echo $cpf ?>" name="cpf" placeholder="CPF:" maxlength="14" required>
                     </div>
-                    
+                    <span class='span-required'>Formato esperado: XXXXXXXXXXX</span>
                     <div class="form-control">
 
                         <input type="text" class="input-text required" id="tel" name="telefone" value="<?php echo $telefone ?>" placeholder="Telefone:" maxlength="14" oninput="telefoneValidate()" required>
-                        <span class='span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
                     </div>
-                    
+                    <span class='span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
                     <div class="form-control">
 
                         <div class="input-text radio-control">
@@ -245,9 +240,8 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="form-control">
                         <input type="date" name="data_nascimento" id="data_nascimento" class="input-text" value="<?php echo $dataNasc ?>" required>
-                        <span id="erro-data"></span>
                     </div>
-                    
+                    <span id="erro-data"></span>
                     <div class="form-control">
                         <div class=""></div>
                         <input type="text" class="input-text required" id="cep" name="cep" placeholder="CEP:" maxlength="9" value="<?php echo $cep ?>" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" maxlength="9" required>
@@ -280,8 +274,7 @@ if (isset($_POST['submit'])) {
         if (!validarDataNascimento(this.value)) {
             errorText.innerHTML = "Sua data de nascimento está em formato errado ou você é menor de 18 anos";
             this.style.border = "2px solid red";
-            errorText.style.color = "white";
-            errorText.style.fontSize = "12px";
+            errorText.style.color = "red";
             this.value = '';
         } else {
             this.style.border = ""; // removendo a borda
@@ -329,18 +322,17 @@ if (isset($_POST['submit'])) {
     const campos = document.querySelectorAll('.required');
     const spans = document.querySelectorAll('.span-required');
     const regexTelefone = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/;
-    const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
 
     form.querySelectorAll('input, select, textarea').forEach((element) => {
         element.addEventListener('change', (event) => {
 
-            if (!regexTelefone.test(campos[1].value)) {
-                setError(1);
+            if (!regexTelefone.test(campos[0].value)) {
+                setError(0);
                 document.getElementById("submit").disabled = true;
                 return;
             } else {
                 document.getElementById("submit").disabled = false;
-                removeError(1);
+                removeError(0);
             }
 
             return true;
@@ -362,19 +354,19 @@ if (isset($_POST['submit'])) {
         spans[index].style.display = 'none';
     }
 
-    function cpfValidate() {
-        if (!regexCPF.test(campos[0].value)) {
+    // function cpfValidate() {
+    //     if (!regexCPF.test(campos[0].value)) {
+    //         setError(0);
+    //     } else {
+    //         removeError(0);
+    //     }
+    // }
+
+    function telefoneValidate() {
+        if (!regexTelefone.test(campos[0].value)) {
             setError(0);
         } else {
             removeError(0);
-        }
-    }
-
-    function telefoneValidate() {
-        if (!regexTelefone.test(campos[1].value)) {
-            setError(1);
-        } else {
-            removeError(1);
         }
     }
 

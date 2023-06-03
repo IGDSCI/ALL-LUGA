@@ -172,7 +172,6 @@ $result2 = $conexao->query($sql2);
 	<main>
 		<table class="table" id="tabela1">
 			<thead>
-				<th class="tabela" scope="col" colspan="11">Usuários Cadastrados</th>
 				<tr>
 					<th class="tabela" scope="col">ID</th>
 					<th class="tabela" scope="col">Login</th>
@@ -229,12 +228,11 @@ $result2 = $conexao->query($sql2);
 		<br>
 		<table class="table" id="tabela2">
 			<thead>
-				<th class="tabela" scope="col" colspan="7">Produtos Cadastrados</th>
 				<tr>
 					<th class="tabela" scope="col">ID</th>
 					<th class="tabela" scope="col">Nome</th>
 					<th class="tabela" scope="col">Descrição</th>
-					<th class="tabela" scope="col">Preço (diário)</th>
+					<th class="tabela" scope="col">Preço</th>
 					<th class="tabela" scope="col">Proprietário</th>
 					<th class="tabela" scope="col">Categoria</th>
 					<th class="tabela" scope="col">Ações</th>

@@ -159,6 +159,7 @@ $result2 = $conexao->query($sql2);
 		<div class="left-container fade-in-content">
 			<div class="header">
 				<div class="profile-picture">
+					<img src="Images/pexels-pixabay-39866.png" alt="">
 				</div>
 
 				<div class="header-content">
@@ -169,7 +170,7 @@ $result2 = $conexao->query($sql2);
 					</div>
 
 
-					<h2 class="header-h2">Bem-vindo(a) ao seu perfil, <b><?php echo $login ?></b>! Aqui, você pode ver seu histórico de aluguéis, e também editar e personalizar suas informações.</h2>
+					<h2 class="header-h2">Lorem ipsum dolor sit amet, consectetuer adipiscing.<br> elit, sed diam lorem Lorem.</h2>
 				</div>
 			</div>
 
@@ -209,10 +210,9 @@ $result2 = $conexao->query($sql2);
 			<div>
 			<table class="table" id="tabela2">
 					<thead>
-						<th class="tabela" scope="col" colspan="6">Histórico de Aluguéis</th>
 						<tr>
 							<th class="tabela" scope="col">Nome</th>
-							<th class="tabela" scope="col">Preço (diário)</th>
+							<th class="tabela" scope="col">Preço</th>
 							<th class="tabela" scope="col">Descrição</th>
 							<th class="tabela" scope="col">Proprietário</th>
 							<th class="tabela" scope="col">Foto</th>
