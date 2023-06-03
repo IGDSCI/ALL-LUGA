@@ -73,8 +73,8 @@ if (!empty($_GET['ID_Usuario'])) {
     }
 
     .right-container {
-        width: 450px;
-        height: 800px;
+        width: 30%;
+        height: 100%;
         background-color: #f2f2f2;
         padding: 20px;
         border-radius: 3px;

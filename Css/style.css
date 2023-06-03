@@ -210,13 +210,13 @@ body{
 }
 
 .nome-produto {
-  font-size: 26px;
+  font-size: 25px;
   margin-bottom: 5px;
   font-weight: bold;
   font-family: 'Roboto Condensed', sans-serif;
 }
 .preco-produto {
-  font-size: 30px;
+  font-size: 25px;
   margin-bottom: 5px;
 }
 
@@ -241,4 +241,6 @@ body{
 .botao-comprar:active {
   background-color: var(--cor-quaternaria);
 }
+
+
 

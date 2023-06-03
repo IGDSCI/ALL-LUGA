@@ -57,7 +57,7 @@ if (!empty($_GET['ID_Produto'])) {
 
               <input type="text" class="input-text" id="descricao" name="descricao" placeholder="Descrição" value="<?php echo $descricao?>" required>
 
-              <input type="number" step="any" class="input-text" id="preco" name="preco" placeholder="Preco" value="<?php echo $preco?>" required>
+              <input type="number" step="any" class="input-text" id="preco" name="preco" placeholder="Preco (diário)" value="<?php echo $preco?>" required>
 
               <div class="input-text">
                 <h3 id="file-name">Foto do produto</h3>

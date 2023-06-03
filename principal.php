@@ -15,9 +15,12 @@ $login = $_SESSION['login'];
 if (!empty($_GET['search'])) {
 	$data = $_GET['search'];
 
-	$sql2 = "SELECT * FROM tb_produto
-		INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
-		WHERE Nome LIKE '%$data%' OR Descricao LIKE '%$data%'OR TipoCategoria LIKE '%$data%'";
+	$sql2 = "SELECT DISTINCT tb_produto.*, tb_categoria.TipoCategoria, tb_usuario.Login AS Login
+		FROM tb_produto
+		LEFT JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
+		LEFT JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
+		LEFT JOIN tb_aluguel ON tb_aluguel.ID_Produto = tb_produto.ID_Produto
+		WHERE Nome LIKE '%$data%' OR Descricao LIKE '%$data%'OR TipoCategoria LIKE '%$data%' and tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL";
 } else {
 	$sql2 = "SELECT DISTINCT tb_produto.*, tb_categoria.TipoCategoria, tb_usuario.Login AS Login
 		FROM tb_produto
@@ -51,7 +54,7 @@ $result2 = $conexao->query($sql2);
 		</div>
 		<div class="botoes__container">
 			<a href="locadorPerfil.php" class="botoes">Visitar Perfil</a>
-			<a href="login.php" class="botoes">Entrar como locatário</a>
+			<a href="login2.php" class="botoes">Entrar como locatário</a>
 		</div>
 	</header>
 	
@@ -70,8 +73,8 @@ $result2 = $conexao->query($sql2);
 			echo "<div class='item' id='card-content' style='width: 25%; display: inline-block; margin-right: 1%; margin-bottom: 20px;'>";
 			echo "<td><img class='imagemproduto'  width=50px src=" . $linha['Foto'] . "></td>";
 			echo "<td> <h1 class='nome-produto'> Nome: " . $linha['Nome'] . "</h1></td>";
-			echo "<td> <h1 class='preco-produto'> Preço: " . $linha['Preco'] . "</h1></td>";
-			echo "<td> <h1 class='descricao-produto'>Proprietário: " . $linha['Login'] . "</h1></td>";
+			echo "<td> <h1 class='preco-produto'> Preço (diário): R$" . $linha['Preco'] . "</h1></td>";
+			echo "<td> <h1  style = 'font-size: 25px;'>Proprietário: " . $linha['Login'] . "</h1></td>";
 			echo "<button class='botao-comprar'><a href='telaAluguel2.php?id=" . $linha['ID_Produto'] . "&imagem=" . $linha['Foto'] . "'>Alugar</a></button>";
 			echo "</div>";
 		}
