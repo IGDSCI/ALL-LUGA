@@ -1,7 +1,7 @@
 <?php
     $dbHost = 'Localhost';
     $dbUsername = 'root';
-    $dbPassword = 'lu@@2013';
+    $dbPassword = 'ghu_21032004';
     $dbName = 'allluga';
 
     /* mysqli O MySQLi é tanto processual quanto orientada por objeto – este último atributo foi herdado da versão mais antiga do MySQL. */

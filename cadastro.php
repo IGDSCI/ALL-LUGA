@@ -82,6 +82,7 @@ if (isset($_POST['submit'])) {
 
        
         <link rel="stylesheet" type="text/css" href="Css/style.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
      
 
@@ -103,6 +104,13 @@ if (isset($_POST['submit'])) {
         --cor-quintenaria: #d7d7d7;
     }
 
+    .custom-toastfy{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+            }
+
 
     .main-section {
         font-family: 'Montserrat', sans-serif;
@@ -111,19 +119,19 @@ if (isset($_POST['submit'])) {
         align-items: center;
         min-height: 100vh;
         background-image: url(arquivos/background.jpg);
-        background-size: 1920px 1080px;
+        background-size: 100%;
         
     }
 
     h2 {
         text-align: center;
         color: white;
-        margin: 10px
+        margin: 10px;
     }
 
     .right-container {
-        width: 450px;
-        height: 800px;
+        width: 30%;
+        height: 100%;
         background-color: #f2f2f2;
         padding: 20px;
         border-radius: 3px;
@@ -134,9 +142,7 @@ if (isset($_POST['submit'])) {
         align-items: center;
         box-shadow: 1px 1px 1px 1px black;
     }
-    .right-container:hover{
-        transform: scale(1.01);
-    }
+    
 
     .form-control {
         margin-bottom: 20px;
@@ -150,6 +156,7 @@ if (isset($_POST['submit'])) {
         font-family: 'Montserrat', sans-serif;
         font-size: 15px;
         color: black;
+        outline: 0;
     }
     .input-text:hover{
         transform: scale(1.01);
@@ -157,19 +164,16 @@ if (isset($_POST['submit'])) {
 
     .input-submit {
     font-family: 'Roboto Condensed', sans-serif;
-    align-items: center;
-    align-self: center;
-    display: inline-block;
     padding: 10px 40px;
-    border: none;
     border-radius: 4px;
     font-size: 20px;
+    border:none;
     text-align: center;
     font-weight:bold;
     text-decoration: none;
     background-color: var(--cor-quaternaria);
     color: white;
-    margin-left: 90px;
+    margin-left: 30%;
 }
     .radio-control label {
         color: white;
@@ -189,7 +193,7 @@ if (isset($_POST['submit'])) {
             font-weight: normal;
             font-style: normal;
             font-display: swap;
-            font-size: 16px;
+            font-size: 12px;
         }
     
 </style>
@@ -211,24 +215,29 @@ if (isset($_POST['submit'])) {
                             <form id="form" method="post" action="cadastro.php"> 
                                 <div class="form-control">
                                     <input type="text" class="input-text required" id="input-login" name="login" placeholder="Nome:" oninput="loginValidate()" required>
+                                    <span class = 'span-required'>O login deve possuir pelo menos 3 caracteres</span>
                                 </div>
-                                <span class = 'span-required'>O login deve possuir pelo menos 3 caracteres</span>
+                                
                                 <div class="form-control">  
                                     <input type="password" class="input-text required" id="input-senha" name="senha" placeholder="Senha:" oninput="senhaValidate()" required>
+                                    <span class = 'span-required'>A senha deve possuir pelo menos 8 caracteres</span>
                                 </div>
-                                <span class = 'span-required'>A senha deve possuir pelo menos 8 caracteres</span>
+                                
                                 <div class="form-control">  
                                     <input type="password" class="input-text required" id="input-senha" name="confirmaSenha" placeholder="Confirme sua senha:" oninput="senhaConfirmaValidate()"  required>
+                                    <span class = 'span-required'>A senha deve possuir pelo menos 8 caracteres</span>
                                 </div>
-                                <span class = 'span-required'>A senha deve possuir pelo menos 8 caracteres</span>
+                                
                                 <div class="form-control">
-                                    <input type="text" class="input-text required" id="cpf" name="cpf" placeholder="CPF:"  maxlength="14" required>
+                                    <input type="text" class="input-text required" id="cpf" name="cpf" placeholder="CPF:"  maxlength="14" oninput="cpfValidate()" required>
+                                    <span class = 'span-required'>Formato esperado: XXX.XXX.XXX-XX</span>
                                 </div>
-                                <span class = 'span-required'>Formato esperado: XXXXXXXXXXX</span>
+                                
                                 <div class="form-control">
                                     <input type="text" class="input-text required" id="tel" maxlength="14" name="telefone" onkeydown="return filterNumeric(event)" placeholder="Telefone:" oninput="telefoneValidate()" required>
+                                    <span class = 'span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
                                 </div>
-                                <span class = 'span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
+                                
                                 <div class="form-control ">
                                     <div class="input-text radio-control">
                                         
@@ -243,8 +252,9 @@ if (isset($_POST['submit'])) {
                                 <div class="form-control">
                                     <div class=""></div>
                                     <input type="date" name="data_nascimento" id="data_nascimento" class="input-text" required>
+                                    <span id="erro-data"></span>
                                 </div>
-                                <span id="erro-data"></span>
+                                
 
 
                                 <div class="form-control">
@@ -266,6 +276,7 @@ if (isset($_POST['submit'])) {
                                         <option value="2" >Locador</option>
                                         <option value="3" >Locatário</option>
                                     </select>
+                                    
                                 </div>
                             
                             <input class="input-submit" type="submit" name="submit" id="submit" value="ENVIAR">
@@ -286,7 +297,7 @@ if (isset($_POST['submit'])) {
                 duration: 12000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
+                gravity: "bottom",
                 position: "right",
                 backgroundColor: "#0E4597",
             }).showToast();
@@ -299,7 +310,7 @@ if (isset($_POST['submit'])) {
                 duration: 12000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
+                gravity: "bottom",
                 position: "right",
                 backgroundColor: "#0E4597",
             }).showToast();
@@ -312,7 +323,7 @@ if (isset($_POST['submit'])) {
                 duration: 12000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
+                gravity: "bottom",
                 position: "right",
                 backgroundColor: "#0E4597",
             }).showToast();
@@ -325,7 +336,7 @@ if (isset($_POST['submit'])) {
                 duration: 12000,
                 newWindow: true,
                 close: true,
-                gravity: "top",
+                gravity: "bottom",
                 position: "right",
                 backgroundColor: "#0E4597",
             }).showToast();
@@ -339,7 +350,8 @@ if (isset($_POST['submit'])) {
                 if (!validarDataNascimento(this.value)) {
                     errorText.innerHTML = "Sua data de nascimento está em formato errado ou você é menor de 18 anos";
                     this.style.border = "2px solid red";
-                    errorText.style.color = "red";
+                    errorText.style.color = "white";
+                    errorText.style.fontSize = "12px";
                     this.value = '';
                 } else{
                     this.style.border = ""; // removendo a borda
@@ -388,7 +400,7 @@ if (isset($_POST['submit'])) {
             const spans = document.querySelectorAll('.span-required');
             const regexLogin = /^\w{3,}$/; 
             const regexSenha = /^.{8,}$/;
-            const regexCPF = /^\d{14}$/;
+            const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
             const regexTelefone = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/;
 
 

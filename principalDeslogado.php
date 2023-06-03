@@ -60,7 +60,7 @@ $result2 = $conexao->query($sql2);
 					echo "<div class='item' id='card-content' style='width: 25%; display: inline-block; margin-right: 1%; margin-bottom: 20px;'>";
 					echo "<td><img class='imagemproduto'  width=50px src=".$linha['Foto']."></td>";
 					echo "<td> <h1 class='nome-produto'> Nome: ".$linha['Nome']."</h1></td>";
-					echo "<td> <h1 class='preco-produto'> Preço: ".$linha['Preco']."</h1></td>";
+					echo "<td> <h1 class='preco-produto'> Preço (diário): R$".$linha['Preco']."</h1></td>";
 					echo "<td> <h1 class='descricao-produto'>Proprietário: ".$linha['Login']."</h1></td>";
 					echo "<button class='botao-comprar'><a href='login2.php'>Alugar</a></button>";
 					echo "</div>";

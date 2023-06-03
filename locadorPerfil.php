@@ -21,12 +21,12 @@ $sql = "SELECT tb_usuario.*, tb_sexo.Genero, tb_tipo_usuario.Tipo
     WHERE Login = '$login'
 	ORDER BY tb_usuario.ID_Usuario DESC";
 
-$sql2 = "SELECT tb_produto.*, tb_usuario.Login, tb_categoria.TipoCategoria
+$sql2 = "SELECT DISTINCT tb_produto.*, tb_usuario.Login, tb_categoria.TipoCategoria
 	FROM tb_produto
 	INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
 	INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
 	LEFT JOIN tb_aluguel ON tb_aluguel.ID_Produto = tb_produto.ID_Produto
-	WHERE Login = '$login' AND tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL
+	WHERE Login = '$login' AND (tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL)
 	ORDER BY tb_produto.ID_Produto DESC";
 
 $result = $conexao->query($sql);
@@ -162,7 +162,6 @@ $result2 = $conexao->query($sql2);
 		<div class="left-container fade-in-content">
 			<div class="header">
 				<div class="profile-picture">
-					<img src="Images/pexels-pixabay-39866.png" alt="">
 				</div>
 
 				<div class="header-content">
@@ -171,7 +170,7 @@ $result2 = $conexao->query($sql2);
 					<button class='chamada-anuncio editar margin'><a href='principal.php'>Principal</a></button>
 
 
-					<h2 class="header-h2 margin">Lorem ipsum dolor sit amet, consectetuer adipiscing.<br> elit, sed diam lorem Lorem.</h2>
+					<h2 class="header-h2 margin">Bem-vindo(a) ao seu perfil, <b><?php echo $login ?></b>! Aqui, você pode anunciar seus produtos, editar e personalizar suas informações. Além disso, você receberá propostas de aluguel para seus produtos e poderá acompanhar seu histórico de aluguéis.</h2>
 				</div>
 			</div>
 
@@ -208,14 +207,15 @@ $result2 = $conexao->query($sql2);
 				<br><br>
 				<table class="table" id="tabela2">
 					<thead>
+						<th class="tabela" scope="col" colspan="7">Seus Produtos</th>
 						<tr>
 							<th class="tabela" scope="col">Nome</th>
 							<th class="tabela" scope="col">Descrição</th>
-							<th class="tabela" scope="col">Preço</th>
+							<th class="tabela" scope="col">Preço (diário)</th>
 							<th class="tabela" scope="col">Proprietário</th>
 							<th class="tabela" scope="col">Categoria</th>
-							<th class="tabela" scope="col">...</th>
 							<th class="tabela" scope="col">Foto</th>
+							<th class="tabela" scope="col">...</th>
 						</tr>
 						
 					</thead>
@@ -233,25 +233,26 @@ $result2 = $conexao->query($sql2);
 								echo "<td> R$" . $linha['Preco'] . "</td>";
 								echo "<td>" . $linha['Login'] . "</td>";
 								echo "<td>" . $linha['TipoCategoria'] . "</td>";
+								echo "<td><img width=120px src=" . $linha['Foto'] . "></td>";
 								echo "<td>
 										<button class='editar'><a href='locadorEditProduto.php?ID_Produto=$linha[ID_Produto]'>Editar</a></button>
 										<button class='excluir'><a href='deletaProduto.php?ID_Produto=$linha[ID_Produto]'>Excluir</a></button>
 									</td>";
-								echo "<td><img width=100px src=" . $linha['Foto'] . "></td>";
 								echo "</tr>";
 							}
 						} else {
 							// Se a consulta não retornou resultados, exibe uma mensagem de erro
-							echo "<td colspan='8'>Nenhum registro encontrado. </td>";
+							echo "<td colspan='7'>Nenhum registro encontrado. </td>";
 						}
 						?>
 					</tbody>
-
+					
 					<thead>
+						<th class="tabela" scope="col" colspan="5">Suas Propostas</th>
 						<tr>
-							<th class="tabela" scope="col">Valor</th>
+							<th class="tabela" scope="col">Preço (diário)</th>
 							<th class="tabela" scope="col">Dias</th>
-							<th class="tabela" scope="col">Produto ID</th>
+							<th class="tabela" scope="col">Nome do Produto</th>
 							<th class="tabela" scope="col">Aceitar proposta</th>
 							<th class="tabela" scope="col">Recusar proposta</th>
 						</tr>
@@ -259,9 +260,11 @@ $result2 = $conexao->query($sql2);
 					<tbody>
 						<?php
 						// Consulta SQL para recuperar os dados da tb_aluguel
-						$sql3 = "SELECT * FROM tb_aluguel
-							INNER JOIN tb_usuario ON tb_aluguel.Nome_Locador = tb_usuario.Login
-							WHERE tb_aluguel.Nome_Locador = '$login' AND tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL";
+						$sql3 = "SELECT tb_aluguel.*, tb_produto.Nome AS Nome
+								FROM tb_aluguel
+								INNER JOIN tb_usuario ON tb_aluguel.Nome_Locador = tb_usuario.Login
+								LEFT JOIN tb_produto ON tb_aluguel.ID_Produto = tb_produto.ID_Produto
+								WHERE tb_aluguel.Nome_Locador = '$login' AND (tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL)";
 						$resultado3 = $conexao->query($sql3);
 
 						// Verifica se a consulta retornou resultados
@@ -272,7 +275,7 @@ $result2 = $conexao->query($sql2);
 								echo "<tr>";
 								echo "<td> R$" . $linha['Valor'] . "</td>";
 								echo "<td>" . $linha['Dias'] . "</td>";
-								echo "<td>" . $linha['ID_Produto'] . "</td>";
+								echo "<td>" . $linha['Nome'] . "</td>";
 								echo "<td>
 										<button class='editar'><a href='aceitarProposta.php?id=" . $linha['ID_Aluguel'] . "'>Aceitar</a></button>
 									</td>";
@@ -290,18 +293,20 @@ $result2 = $conexao->query($sql2);
 
 					<tbody>
 						<thead>
+							<th class="tabela" scope="col" colspan="7">Histórico de Aluguéis</th>
 							<tr>
 								<th class="tabela" scope="col">Nome</th>
 								<th class="tabela" scope="col">Descrição</th>
-								<th class="tabela" scope="col">Preço</th>
+								<th class="tabela" scope="col">Preço (diário)</th>
 								<th class="tabela" scope="col">Proprietário</th>
 								<th class="tabela" scope="col">Categoria</th>
+								<th class="tabela" scope="col">Locatário</th>
 								<th class="tabela" scope="col">Foto</th>
 							</tr>
 						</thead>
 						<?php
 						// Consulta SQL para recuperar os dados da tb_aluguel
-						$sql4 = "SELECT tb_produto.*, tb_usuario.Login, tb_categoria.TipoCategoria
+						$sql4 = "SELECT tb_produto.*, tb_usuario.Login, tb_categoria.TipoCategoria, tb_aluguel.Nome_Locatario
 						FROM tb_produto
 						INNER JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
 						INNER JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
@@ -321,12 +326,14 @@ $result2 = $conexao->query($sql2);
 								echo "<td> R$" . $linha['Preco'] . "</td>";
 								echo "<td>" . $linha['Login'] . "</td>";
 								echo "<td>" . $linha['TipoCategoria'] . "</td>";
+								echo "<td>" . $linha['Nome_Locatario'] . "</td>";
 								echo "<td><img width=100px src=" . $linha['Foto'] . "></td>";
+								
 								echo "</tr>";
 							}
 						} else {
 							// Se a consulta não retornou resultados, exibe uma mensagem de erro
-							echo "<td colspan='8'>Nenhum registro encontrado. </td>";
+							echo "<td colspan='6'>Nenhum registro encontrado. </td>";
 						}
 						?>
 					</tbody>
