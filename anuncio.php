@@ -103,7 +103,7 @@ if (isset($_POST['submit'])) {
                 </div>
                 <div class="custom-select">
                   
-                  <select name="categoria" required>
+                  <select name="categoria" required onfocus='this.size=5;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
                     <option value="1">Eletrônicos</option>
                     <option value="2">Eletrodomésticos</option>
                     <option value="3">Utensílios</option>
