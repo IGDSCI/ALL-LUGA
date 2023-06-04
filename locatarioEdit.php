@@ -19,7 +19,7 @@ if (!empty($_GET['ID_Usuario'])) {
             $dataNasc = $linha['DataNasc'];
             $cep = $linha['cep'];
             $cidade = $linha['Cidade'];
-            $estado = $linha['Estado'];
+            $estado = $linha['Estado']; 
         }
     }
 } else {
@@ -28,7 +28,6 @@ if (!empty($_GET['ID_Usuario'])) {
 ?>
 
 <html lang="pt-br">
-
 <head>
     <title> All Luga </title>
     <meta charset="utf-8">
@@ -54,6 +53,13 @@ if (!empty($_GET['ID_Usuario'])) {
         --cor-quintenaria: #d7d7d7;
     }
 
+    .custom-toastfy{
+        font-family: 'Montserrat', sans-serif;
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+            }
+
 
     .main-section {
         font-family: 'Montserrat', sans-serif;
@@ -62,14 +68,14 @@ if (!empty($_GET['ID_Usuario'])) {
         align-items: center;
         min-height: 100vh;
         background-image: url(arquivos/background.jpg);
-        background-size: 1920px 1080px;
+        background-size: 100%;
         
     }
 
     h2 {
         text-align: center;
         color: white;
-        margin: 10px
+        margin: 10px;
     }
 
     .right-container {
@@ -85,9 +91,7 @@ if (!empty($_GET['ID_Usuario'])) {
         align-items: center;
         box-shadow: 1px 1px 1px 1px black;
     }
-    .right-container:hover{
-        transform: scale(1.01);
-    }
+    
 
     .form-control {
         margin-bottom: 20px;
@@ -101,30 +105,28 @@ if (!empty($_GET['ID_Usuario'])) {
         font-family: 'Montserrat', sans-serif;
         font-size: 15px;
         color: black;
+        outline: 0;
     }
     .input-text:hover{
         transform: scale(1.01);
     }
 
-    .input-submit {
-    font-family: 'Roboto Condensed', sans-serif;
-    align-items: center;
-    align-self: center;
-    display: inline-block;
-    padding: 10px 40px;
-    border: none;
-    border-radius: 4px;
-    font-size: 20px;
-    text-align: center;
-    font-weight:bold;
-    text-decoration: none;
-    background-color: var(--cor-quaternaria);
-    color: white;
-    margin-left: 90px;
-}
+        .input-submit {
+        font-family: 'Roboto Condensed', sans-serif;
+        padding: 10px 40px;
+        border-radius: 4px;
+        font-size: 20px;
+        border:none;
+        text-align: center;
+        font-weight:bold;
+        text-decoration: none;
+        background-color: var(--cor-quaternaria);
+        color: white;
+        margin-left: 30%;
+    }
     .radio-control label {
         color: white;
-        align-itens: center;
+        
     }
 
 
@@ -140,7 +142,7 @@ if (!empty($_GET['ID_Usuario'])) {
             font-weight: normal;
             font-style: normal;
             font-display: swap;
-            font-size: 16px;
+            font-size: 12px;
         }
     
 </style>
@@ -172,7 +174,7 @@ if (!empty($_GET['ID_Usuario'])) {
         <div class="right-container">
             <div class="right-control fade-in-image">
                 <h2>EDITE SEU PERFIL</h2>
-                <form method="post" action="locatarioSalvaEdit.php" id="form">
+                <form method="post" action="locadorSalvaEdit.php" id="form">
                     <div class="form-control">
 
                         <input type="text" class="input-text" id="input-login" name="login" value="<?php echo $login ?>" placeholder="Login:" style="opacity: .4;" readonly>
@@ -183,14 +185,16 @@ if (!empty($_GET['ID_Usuario'])) {
                     </div>
                     <div class="form-control">
 
-                        <input type="text" class="input-text" id="cpf" value="<?php echo $cpf ?>" maxlength="14" name="cpf" placeholder="CPF:"  required>
+                        <input type="text" class="input-text required" id="cpf" value="<?php echo $cpf ?>" name="cpf" placeholder="CPF:" maxlength="14" oninput="cpfValidate()" required>
+                        <span class='span-required'>Formato esperado: XXXXXXXXXXX</span>
                     </div>
-                    <span class='span-required'>Formato esperado: XXXXXXXXXXX</span>
+                    
                     <div class="form-control">
 
-                        <input type="text" class="input-text required" id="tel" name="telefone" maxlength="14" value="<?php echo $telefone ?>" placeholder="Telefone:" oninput="telefoneValidate()"  required>
+                        <input type="text" class="input-text required" id="tel" name="telefone" value="<?php echo $telefone ?>" placeholder="Telefone:" maxlength="14" oninput="telefoneValidate()" required>
+                        <span class='span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
                     </div>
-                    <span class='span-required'>Formato esperado: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX</span>
+                    
                     <div class="form-control">
 
                         <div class="input-text radio-control">
@@ -204,20 +208,20 @@ if (!empty($_GET['ID_Usuario'])) {
                         </div>
                     </div>
                     <div class="form-control">
-
                         <input type="date" name="data_nascimento" id="data_nascimento" class="input-text" value="<?php echo $dataNasc ?>" required>
+                        <span id="erro-data"></span>
                     </div>
-                    <span id="erro-data"></span>
+                    
                     <div class="form-control">
                         <div class=""></div>
                         <input type="text" class="input-text required" id="cep" name="cep" placeholder="CEP:" maxlength="9" value="<?php echo $cep ?>" oninput="this.value = this.value.replace(/[^0-9-]/g, '')" maxlength="9" required>
                     </div>
                     <div class="form-control">
-                        <input type="text" class="input-text required" id="cidade" name="cidade" placeholder="Cidade:" value="<?php echo $cidade ?>" readonly required>
+                        <input type="text" class="input-text required" id="cidade" name="cidade" placeholder="Cidade:"   value="<?php echo $cidade ?>" readonly required>
                     </div>
                     <span class='span-required'>A cidade dever ser escrita somente com letras</span>
                     <div class="form-control">
-                        <input type="text" class="input-text required" id="estado" name="estado" placeholder="Estado:" value="<?php echo $estado ?>" readonly required>
+                        <input type="text" class="input-text required" id="estado" name="estado" placeholder="Estado:" value="<?php echo $estado ?>"  readonly required>
                     </div>
                     <span class='span-required'>O estado dever ser escrito somente com letras</span>
                     <div class="form-control">
@@ -240,7 +244,8 @@ if (!empty($_GET['ID_Usuario'])) {
         if (!validarDataNascimento(this.value)) {
             errorText.innerHTML = "Sua data de nascimento está em formato errado ou você é menor de 18 anos";
             this.style.border = "2px solid red";
-            errorText.style.color = "red";
+            errorText.style.color = "white";
+            errorText.style.fontSize = "12px";
             this.value = '';
         } else {
             this.style.border = ""; // removendo a borda
@@ -287,26 +292,29 @@ if (!empty($_GET['ID_Usuario'])) {
     const form = document.getElementById('form');
     const campos = document.querySelectorAll('.required');
     const spans = document.querySelectorAll('.span-required');
-    const regexLogin = /^\w{3,}$/;
-    const regexSenha = /^.{8,}$/;
     const regexTelefone = /(\(?\d{2}\)?\s)?(\d{4,5}\-\d{4})/;
+    const regexCPF = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
 
     form.querySelectorAll('input, select, textarea').forEach((element) => {
         element.addEventListener('change', (event) => {
 
-            if (!regexTelefone.test(campos[0].value)) {
-                setError(0);
+            if (!regexTelefone.test(campos[1].value)) {
+                setError(1);
                 document.getElementById("submit").disabled = true;
                 return;
             } else {
                 document.getElementById("submit").disabled = false;
-                removeError(0);
+                removeError(1);
             }
 
             return true;
 
         });
     });
+
+
+
+
 
     function setError(index) {
         campos[index].style.border = '2px solid #e63636'
@@ -318,11 +326,35 @@ if (!empty($_GET['ID_Usuario'])) {
         spans[index].style.display = 'none';
     }
 
-    function telefoneValidate(){
-        if (!regexTelefone.test(campos[0].value)){
+    function cpfValidate() {
+        if (!regexCPF.test(campos[0].value)) {
             setError(0);
         } else {
             removeError(0);
+        }
+    }
+
+    function telefoneValidate() {
+        if (!regexTelefone.test(campos[1].value)) {
+            setError(1);
+        } else {
+            removeError(1);
+        }
+    }
+
+    function cidadeValidate() {
+        if (campos[2].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
+            removeError(2);
+        } else {
+            setError(2);
+        }
+    }
+
+    function estadoValidate() {
+        if (campos[3].value.match(/^[a-zA-Zà-úÀ-Ú ]+$/)) {
+            removeError(3);
+        } else {
+            setError(3);
         }
     }
 </script>

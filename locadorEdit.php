@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
     VALUES ('$login', '$senha', '$telefone', '$cpf', '$sexo', '$dataNasc', '$estado', '$cidade')");
 
     if ($result1) {
-        echo "Usuário cadastrado com sucesso!";
+        echo "Usuário cadastrado com sucesso!"; 
         if ($_POST['escolha'] == 2) {
             header('Location: login.php');
         }

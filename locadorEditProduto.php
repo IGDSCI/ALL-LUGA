@@ -49,7 +49,7 @@ if (!empty($_GET['ID_Produto'])) {
       <section class="content-container">
         <div class="container-title">
           <h1>Cadastre aqui seu produto</h1>
-          <h2 class="fade-in-image">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</h2>
+          <h2 class="fade-in-image">Para cadastrar seu produto, por favor, preencha as informações necessárias abaixo. Certifique-se de fornecer todos os detalhes relevantes para que os locatários possam conhecer seu produto de forma adequada!</h2>
           <div class="form-container">
           <h2><?php if (isset($sucesso)) echo $sucesso ?></h2>
             <form enctype="multipart/form-data" class="form" action="locadorSalvaEditProduto.php" method="POST">

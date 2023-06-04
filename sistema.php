@@ -58,20 +58,30 @@ $result2 = $conexao->query($sql2);
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Rubik&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="Css/sistem.css">
 	<style>
-		body {
-			font-family: 'Montserrat', sans-serif;
+		
+		@font-face {
+    font-family: 'Commuters Sans';
+    src: local('js/Commuters Sans Regular'), local('Commuters-Sans-Regular'),
+        url('js/CommutersSans-Regular.woff2') format('woff2'),
+        url('js/CommutersSans-Regular.woff') format('woff'),
+        url('js/CommutersSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+  body {
+			font-family: 'Commuters Sans';
 			background-color: #f5f5f5;
 			margin: 0;
 			padding: 0;
 		}
-
 		header {
-			background-color: #0E4597;
 			padding: 20px;
 			color: white;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
+			border-bottom: 2px solid #097FF5;
+			font-family: 'Commuters Sans';
 		}
 
 		header h1 {
@@ -105,6 +115,11 @@ $result2 = $conexao->query($sql2);
 		nav h1 {
 			font-size: 18px;
 			margin: 0;
+			text-align: left;
+			font: normal normal normal 2.5em Commuters Sans;
+			letter-spacing: 0px;
+			color: #1E1E1E;
+			opacity: 1;
 		}
 
 		hr {
@@ -127,17 +142,6 @@ $result2 = $conexao->query($sql2);
 			flex: 1;
 		}
 
-		.search-container button {
-			background-color: #0E4597;
-			color: white;
-			border: none;
-			padding: 10px 20px;
-			font-size: 16px;
-			border-radius: 5px;
-			margin-left: 10px;
-			cursor: pointer;
-		}
-
 		.table-container {
 			background-color: white;
 			padding: 20px;
@@ -146,13 +150,41 @@ $result2 = $conexao->query($sql2);
 		.table-container h2 {
 			font-size: 24px;
 			margin: 0 0 }
+
+		#tabela1{
+			margin-top: 2%;
+			margin-left: 6%;
+			border-bottom: 2px solid #097FF5;
+		}
+
+		.second-header{
+			margin-left: 6%;
+		}
+
+		#tabela2{
+			margin-top: 2%;
+			margin-left: 6%;
+		}
+		.header-buttons{
+			display:flex;
+			width:30%;
+		}
+		.editar{
+			margin-left:5%;
+		}
+		.first-header{
+			margin-left: 6%;
+		}
 	</style>
 </head>
 
 <body>
 	<header>
-		<button class="editar"><a href="sair.php">Sair</a></button>
-		<button class='chamada-anuncio'><a href='principal.php'>Principal</a></button>
+		<div class='header-buttons'>
+		<div class='chamada-anuncio'><a href='principal.php'>Principal</a></div>
+		<div class="editar"><a href="sair.php">Sair</a></div>
+		</div>
+		
 		<nav>
 			<div>
 				<?php
@@ -163,16 +195,20 @@ $result2 = $conexao->query($sql2);
 		</nav>
 		<br>
 		<div>
-			<h1 class="texto-usuario">Gerenciamento de usuários</h1>
-			<input class="entrada" type="search" placeholder="Procure aqui" id="pesquisar">
-			<button class="pesquisar" onclick="searchData()">Pesquisar</button>
+			
 		</div>
 		<br>
 	</header>
 	<main>
+		<br>
+			<div class="first-header">
+				<h1 class="texto-usuario">Gerenciamento de usuários</h1>
+				<input class="entrada" type="search" placeholder="Procure aqui" id="pesquisar">
+				<button class="pesquisar" onclick="searchData()">Pesquisar</button>
+			</div>
+		<br>
 		<table class="table" id="tabela1">
 			<thead>
-				<th class="tabela" scope="col" colspan="11">Usuários Cadastrados</th>
 				<tr>
 					<th class="tabela" scope="col">ID</th>
 					<th class="tabela" scope="col">Login</th>
@@ -221,7 +257,7 @@ $result2 = $conexao->query($sql2);
 		<br><br>
 		<hr>
 		<br><br>
-		<div>
+		<div class='second-header'>
 			<h1 class="texto-produtos">Gerenciamento de produtos</h1>
 			<input class="entrada" type="search" placeholder="Procure aqui" id="pesquisar2">
 			<button class="pesquisar" onclick="searchData2()">Pesquisar</button>
@@ -229,12 +265,11 @@ $result2 = $conexao->query($sql2);
 		<br>
 		<table class="table" id="tabela2">
 			<thead>
-				<th class="tabela" scope="col" colspan="7">Produtos Cadastrados</th>
 				<tr>
 					<th class="tabela" scope="col">ID</th>
 					<th class="tabela" scope="col">Nome</th>
 					<th class="tabela" scope="col">Descrição</th>
-					<th class="tabela" scope="col">Preço (diário)</th>
+					<th class="tabela" scope="col">Preço</th>
 					<th class="tabela" scope="col">Proprietário</th>
 					<th class="tabela" scope="col">Categoria</th>
 					<th class="tabela" scope="col">Ações</th>

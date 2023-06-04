@@ -20,7 +20,7 @@ if (!empty($_GET['search'])) {
 		LEFT JOIN tb_usuario ON tb_produto.Proprietario = tb_usuario.ID_Usuario
 		LEFT JOIN tb_categoria ON tb_produto.ID_TipoCat = tb_categoria.ID_Categoria
 		LEFT JOIN tb_aluguel ON tb_aluguel.ID_Produto = tb_produto.ID_Produto
-		WHERE Nome LIKE '%$data%' OR Descricao LIKE '%$data%'OR TipoCategoria LIKE '%$data%' and tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL";
+		WHERE Nome LIKE '%$data%' OR Descricao LIKE '%$data%'OR TipoCategoria LIKE '%$data%' and (tb_aluguel.Permissao <> 1 OR tb_aluguel.Permissao IS NULL)";
 } else {
 	$sql2 = "SELECT DISTINCT tb_produto.*, tb_categoria.TipoCategoria, tb_usuario.Login AS Login
 		FROM tb_produto
