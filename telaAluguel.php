@@ -32,13 +32,18 @@ if (isset($_GET['id'])) {
 
         echo "<div class='content'>";
         echo "<p class='title'>" . $produto['Nome'] . "</p>";
-        echo "<p class='title-price'>R$" . $produto['Preco'] . "</p>";
         echo "<h1>Detalhes do produto:</h1>"; 
+        echo "<br>";
         echo "<p>Nome: " . $produto['Nome'] . "</p>";
+        echo "<br>";
         echo "<p>Descrição: " . $produto['Descricao'] . "</p>";
+        echo "<br>";
         echo "<p>Preço (diário): R$" . $produto['Preco'] . "</p>";
+        echo "<br>";
         echo "<p>Categoria: " . $produto['TipoCategoria'] . "</p>";
+        echo "<br>";
         echo "<p>Proprietário: ".$produto['Login']."</p>";
+        echo "<br>";
         echo "<label id='textodia' for='campo2'>Dias:</label>";
         echo "<input class='input-dias' type='number' id='dias' name='dias'>";
         echo "<input type='hidden' name='produtoID' value='" . $_GET['id'] . "'>"; // Inclua o ID do produto como um campo oculto
@@ -167,7 +172,7 @@ if (isset($_GET['id'])) {
             letter-spacing: 0px;
             color: var(--cor-quintenaria);
             opacity: 1;
-            margin-top:6%%;
+            margin-top:6%;
             white-space: nowrap;
            }
            h1{
