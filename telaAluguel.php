@@ -82,6 +82,7 @@ if (isset($_GET['id'])) {
         }
         body{
             background-image: linear-gradient(to right, var(--cor-quaternaria), var(--cor-primaria));
+            overflow: hidden;
         }
 
         :root {
