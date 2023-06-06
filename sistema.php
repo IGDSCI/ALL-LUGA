@@ -249,7 +249,7 @@ $result2 = $conexao->query($sql2);
 					}
 				} else {
 					// Se a consulta não retornou resultados, exibe uma mensagem de erro
-					echo "Nenhum registro encontrado.";
+					echo "<tr><td  colspan='11'>Nenhum registro encontrado.</td></tr>";
 				}
 				?>
 			</tbody>

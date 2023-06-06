@@ -19,6 +19,7 @@ if (!empty($_GET['ID_Usuario'])) {
             $dataNasc = $linha['DataNasc'];
             $cidade = $linha['Cidade'];
             $estado = $linha['Estado']; 
+            $cep = $linha['cep'];
         }
     }
 } else {

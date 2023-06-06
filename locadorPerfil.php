@@ -215,7 +215,7 @@ $result2 = $conexao->query($sql2);
 							<th class="tabela" scope="col">Proprietário</th>
 							<th class="tabela" scope="col">Categoria</th>
 							<th class="tabela" scope="col">Foto</th>
-							<th class="tabela" scope="col">...</th>
+							<th class="tabela" scope="col">Ações</th>
 						</tr>
 						
 					</thead>
