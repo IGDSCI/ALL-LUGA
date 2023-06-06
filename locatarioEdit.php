@@ -174,7 +174,7 @@ if (!empty($_GET['ID_Usuario'])) {
         <div class="right-container">
             <div class="right-control fade-in-image">
                 <h2>EDITE SEU PERFIL</h2>
-                <form method="post" action="locadorSalvaEdit.php" id="form">
+                <form method="post" action="locatarioSalvaEdit.php" id="form">
                     <div class="form-control">
 
                         <input type="text" class="input-text" id="input-login" name="login" value="<?php echo $login ?>" placeholder="Login:" style="opacity: .4;" readonly>
