@@ -163,7 +163,6 @@ if (isset($_GET['id'])) {
             font-size:43px;
             color: var(--cor-quintenaria);
             opacity: 1;
-            white-space: nowrap;
             font-weight:bold;
            }
            .title-price{
