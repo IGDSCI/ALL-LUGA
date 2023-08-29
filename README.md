@@ -6,5 +6,7 @@
 ![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/5b4ad79e-b0ef-4a1d-ab36-159241f7c26b)
 ![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/af78ef80-ee3d-4bb1-92ac-4077f2fc9b6f)
 ![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/1d89ca54-686a-44c1-ad7b-7d6b425d4838)
+![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/22730915-408f-455d-8dc2-32313b336323)
+
 
 
