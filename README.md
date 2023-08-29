@@ -10,6 +10,12 @@
 ![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/3ff76041-6d6e-48c8-afe3-4dda250405d4)
 ![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/69f0159a-781c-47ab-b2c5-982918fd6714)
 ![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/58a93bb5-031c-445d-88bd-0bf35b89ab8f)
+![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/df2c58ab-2db6-4539-8f89-8f04bd7b75f7)
+![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/2a6ee1eb-02f4-4204-bbba-f3f8fc80d35b)
+![image](https://github.com/IGDSCI/ALL-LUGA/assets/114839208/3448635d-375c-43be-bdb6-35c550fd8cc9)
+
+
+
 
 
 
